@@ -206,7 +206,7 @@ body[data-bg-style="plain"] {
 }
 
 .selection-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .selection-header .logo {
@@ -218,21 +218,47 @@ body[data-bg-style="plain"] {
 .selection-header h2 {
   font-size: 1.4rem;
   font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Startseite "Meine Garage": Untertitel unter der Überschrift */
+.garage-subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
+
+/* Letzte Kachel im Garagen-Raster: neues Fahrzeug anlegen */
+.selection-card.vehicle-tile-add {
+  border-style: dashed;
+  border-width: 2px;
+  background: transparent;
+  justify-content: center;
+  color: var(--text-muted);
+  min-height: 160px;
+}
+.selection-card.vehicle-tile-add:hover { color: var(--text-main); }
+.vehicle-tile-add-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+  margin-bottom: 0.6rem;
+}
+.selection-card.vehicle-tile-add h3 { font-size: 1rem; margin: 0; color: var(--text-main); }
+.selection-card.vehicle-tile-add p { font-size: 0.75rem; margin: 0.2rem 0 0; }
 
 .kachel-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-}
-
-/* Wenn "Kundenfahrzeuge" in den Einstellungen deaktiviert ist, bleibt nur
-   noch eine Kachel übrig - dann schön mittig statt halbleer */
-#area-selection-grid.single-area {
-  grid-template-columns: 1fr;
-  max-width: 320px;
-  margin: 0 auto;
 }
 
 .selection-card {
@@ -557,8 +583,6 @@ body[data-bg-style="plain"] {
     max-height: 95vh;
   }
 }
-
-
 
 /* Nachgebauter Fahrzeugschein: helles, liniertes "Papier", zwei Spalten wie
    die aufgeschlagenen Seiten des Originals, Schreibmaschinen-Schrift */
@@ -1034,9 +1058,6 @@ body[data-bg-style="plain"] {
   color: var(--accent-danger);
 }
 
-
-
-
 /* ==========================================================================
    HEADER & NAVIGATION (EBENE 2 & 3)
    ========================================================================== */
@@ -1108,7 +1129,6 @@ body[data-bg-style="plain"] {
   transform: scale(0.92); /* Leichter Druck-Effekt beim Klicken */
 }
 
-
 .logo {
   display: flex;
   align-items: center;
@@ -1146,43 +1166,6 @@ body[data-bg-style="plain"] {
 
 [data-theme="light"] .app-logo-img.logo-for-light {
   display: inline-block;
-}
-
-/* Splash-Screen beim App-Start */
-.splash-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background-color: var(--bg-body);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.splash-screen.splash-hide {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.splash-logo-wrap {
-  display: flex;
-}
-
-.splash-logo {
-  width: 130px;
-  height: 130px;
-  opacity: 0;
-  transform: scale(0.82);
-  animation: splashAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
-}
-
-@keyframes splashAppear {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .header-controls {
@@ -1265,13 +1248,8 @@ body[data-bg-style="plain"] {
   border-color: var(--accent-primary);
 }
 
-/* NAVIGATION DYNAMIK (Eigene Fahrzeuge vs. Kunden) */
 .nav-eigene-only {
   display: flex;
-}
-
-.nav-kunden-only {
-  display: none;
 }
 
 /* Main Content Area */
@@ -1290,27 +1268,6 @@ body[data-bg-style="plain"] {
 
 .hidden {
   display: none !important;
-}
-
-
-/* ==========================================================================
-   CARDS & DASHBOARD
-   ========================================================================== */
-
-/* Frosted-Glass-Effekt: alle Kacheln, Leisten & Flächen, auf denen man klickt,
-   sind halbtransparent (siehe --bg-card/--bg-sidebar/--card-gradient) und
-   bekommen zusätzlich einen Weichzeichner, damit der App-Hintergrund dezent
-   durchscheint statt hart durchsichtig zu wirken. */
-.card,
-.kpi-card,
-.selection-card,
-.vehicle-banner-card,
-.app-header,
-.sidebar,
-.modal,
-.customer-select-panel {
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 .card {
@@ -1530,7 +1487,6 @@ body[data-bg-style="plain"] {
   color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
-
 
 /* Vehicle Banner Card */
 .vehicle-banner-card {
@@ -2142,28 +2098,6 @@ body[data-bg-style="plain"] {
 
 .consumption-chart-sub { margin: -0.35rem 0 0.6rem; font-size: 0.75rem; }
 
-/* --- Sammelrechnung: Auswahl der Aufträge --- */
-.combined-invoice-list {
-  max-height: 50vh;
-  overflow-y: auto;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-}
-.combined-invoice-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.7rem;
-  cursor: pointer;
-}
-.combined-invoice-item + .combined-invoice-item { border-top: 1px solid var(--border-color); }
-.combined-invoice-item input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--accent-primary); }
-.combined-invoice-item-main { flex: 1; min-width: 0; display: flex; flex-direction: column; font-size: 0.85rem; }
-.combined-invoice-item-main strong { overflow-wrap: anywhere; }
-.combined-invoice-item-main small { color: var(--text-muted); font-size: 0.72rem; }
-.combined-invoice-item-price { font-family: var(--font-mono); font-size: 0.85rem; white-space: nowrap; }
-.combined-invoice-summary { font-size: 0.85rem; font-weight: 600; margin: 0.75rem 0 0; }
-
 /* --- Backup-Erinnerung auf dem Startbildschirm --- */
 .backup-reminder {
   max-width: 720px;
@@ -2383,100 +2317,6 @@ input[type="month"]::-webkit-calendar-picker-indicator {
   filter: none;
 }
 
-/* Kundenfahrzeug-Auswahl: aufklappbarer Bereich mit Suche + scrollbarer Liste */
-.customer-select-toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--bg-body);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 0.45rem 0.65rem;
-  border-radius: var(--radius-sm);
-  font-size: 15px;
-  font-family: inherit;
-  cursor: pointer;
-  text-align: left;
-}
-
-.customer-select-toggle:hover {
-  border-color: var(--border-highlight);
-}
-
-.customer-select-toggle-arrow {
-  color: var(--text-muted);
-  transition: transform 0.15s;
-  flex-shrink: 0;
-  margin-left: 0.5rem;
-  display: flex;
-}
-
-.customer-select-toggle-arrow svg {
-  width: 20px;
-  height: 20px;
-}
-
-.customer-select-group.open .customer-select-toggle-arrow {
-  transform: rotate(180deg);
-}
-
-.customer-select-panel {
-  margin-top: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: 0.6rem;
-  background-color: var(--bg-card);
-}
-
-.customer-select-panel input {
-  margin-bottom: 0.5rem;
-}
-
-.customer-select-list {
-  max-height: 260px;
-  overflow-y: auto;
-  border-top: 1px solid var(--border-color);
-}
-
-.customer-select-list-item {
-  padding: 0.5rem 0.4rem;
-  border-bottom: 1px solid var(--border-color);
-  cursor: pointer;
-}
-
-.customer-select-list-item:last-child {
-  border-bottom: none;
-}
-
-.customer-select-list-item:hover {
-  background-color: var(--table-hover-bg);
-}
-
-.customer-select-list-item.active {
-  background-color: var(--table-hover-bg);
-  border-left: 3px solid var(--accent-primary);
-  padding-left: calc(0.4rem - 3px);
-}
-
-.customer-select-list-item .cs-owner {
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--text-main);
-}
-
-.customer-select-list-item .cs-meta {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-}
-
-.customer-select-empty {
-  padding: 0.75rem 0.4rem;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
 /* Compact Buttons */
 .btn {
   padding: 0.45rem 0.9rem;
@@ -2544,16 +2384,6 @@ input[type="month"]::-webkit-calendar-picker-indicator {
   border-top: 1px solid var(--border-color);
   margin: 1.5rem 0;
 }
-
-/* Dynamic Invoice Rows */
-.invoice-item-row {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  align-items: center;
-}
-.invoice-item-row input[type="text"] { flex: 3; }
-.invoice-item-row input[type="number"] { flex: 1; }
 
 /* ==========================================================================
    TABELLEN (DATA-TABLES)
@@ -3218,7 +3048,6 @@ input[type="month"]::-webkit-calendar-picker-indicator {
   0% { transform: translateY(0); }
   100% { transform: translateY(-100%); }
 }
-
 
 /* --- TÜV/HU-ASSISTENT (geführter Wizard) --- */
 

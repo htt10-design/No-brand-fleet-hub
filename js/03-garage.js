@@ -129,6 +129,7 @@ function renderGarageVehicleTiles() {
       : `Archivierte Fahrzeuge anzeigen (${archivedCount})`;
   }
   renderArchivedVehicleGrid();
+  renderGarageSubtitle();
 
   if (list.length === 0) {
     const categoryLabels = { auto: 'Autos', anhaenger: 'Anhänger', boot: 'Boote' };
@@ -226,7 +227,29 @@ function renderGarageVehicleTiles() {
     attachTileLongPress(card, v.id);
     grid.appendChild(card);
   });
+
+  // Letzte Kachel: neues Fahrzeug anlegen (füllt das Raster, statt einen Knopf irgendwo oben)
+  const addCard = document.createElement('div');
+  addCard.className = 'selection-card vehicle-tile vehicle-tile-add' + (isAllFilter ? ' vehicle-tile-compact' : '');
+  addCard.innerHTML = `
+    <span class="vehicle-tile-add-icon">+</span>
+    <h3>Fahrzeug hinzufügen</h3>
+    <p>Auto, Anhänger oder Boot</p>
+  `;
+  addCard.onclick = () => openVehicleModal();
+  grid.appendChild(addCard);
 }
+
+// Untertitel unter "Meine Garage": Anzahl Fahrzeuge bzw. Einstiegshinweis
+function renderGarageSubtitle() {
+  const el = document.getElementById('garageSubtitle');
+  if (!el) return;
+  const count = (appData.vehicles || []).filter(v => !v.archived).length;
+  el.textContent = count === 0
+    ? 'Lege dein erstes Fahrzeug an – Wartung, Tankungen und Kosten an einem Ort.'
+    : `${count} ${count === 1 ? 'Fahrzeug' : 'Fahrzeuge'} · Wartung, Tankungen und Kosten im Blick`;
+}
+
 
 /* --- ARCHIV (verkaufte Fahrzeuge) --- */
 let showArchivedVehicles = false;
@@ -324,36 +347,11 @@ function permanentlyDeleteArchivedVehicle(id) {
 }
 window.permanentlyDeleteArchivedVehicle = permanentlyDeleteArchivedVehicle;
 
-// Zurück zur Haupt-Bereichsauswahl ("Meine Garage" vs. "Kundenfahrzeuge")
-function showAreaSelection() {
-  document.getElementById('area-selection-grid').style.display = 'grid';
-  document.getElementById('garage-vehicle-selection').style.display = 'none';
-  
-  const title = document.getElementById('selection-title');
-  if (title) title.innerText = 'Bitte wähle deinen Bereich';
-}
 
+// Zurück aus einem Fahrzeug zur Startseite "Meine Garage"
 function backToSelection() {
   renderBackupReminder();
-  document.getElementById('app-wrapper').classList.add('hidden');
-  document.getElementById('selection-screen').classList.remove('hidden');
-
-  if (currentMode === 'eigene') {
-    // Aus dem Tab-Modus der eigenen Fahrzeuge geht's zurück zu den Fahrzeug-Kacheln,
-    // nicht bis ganz zum Start-Bildschirm
-    const areaGrid = document.getElementById('area-selection-grid');
-    const garageSelection = document.getElementById('garage-vehicle-selection');
-    const title = document.getElementById('selection-title');
-
-    if (areaGrid) areaGrid.style.display = 'none';
-    if (garageSelection) garageSelection.style.display = 'block';
-    if (title) title.innerText = 'Wähle dein Fahrzeug';
-
-    renderGarageVehicleTiles();
-  } else {
-    // Kundenfahrzeuge: Verhalten bleibt wie gehabt
-    showAreaSelection();
-  }
+  showGarageSelection();
 }
 
 function showTab(tabId, element) {
@@ -373,31 +371,22 @@ function showTab(tabId, element) {
   if (element) {
     element.classList.add('active');
   } else {
-    // Falls via selectArea aufgerufen: Ersten sichtbaren Button aktivieren
-    const activeSelector = currentMode === 'kunden' ? '.nav-kunden-only' : '.nav-eigene-only';
-    document.querySelector(`.sidebar ${activeSelector}`)?.classList.add('active');
+    // Ohne geklickten Button: ersten sichtbaren Navigationspunkt aktivieren
+    document.querySelector('.sidebar .nav-eigene-only')?.classList.add('active');
   }
 
   // 4. Nav-Sichtbarkeiten umschalten
-  const isCustomerMode = (currentMode === 'kunden');
-
   document.querySelectorAll('.nav-eigene-only').forEach(item => {
-    item.style.setProperty('display', isCustomerMode ? 'none' : 'flex', 'important');
-  });
-
-  document.querySelectorAll('.nav-kunden-only').forEach(item => {
-    item.style.setProperty('display', isCustomerMode ? 'flex' : 'none', 'important');
+    item.style.setProperty('display', 'flex', 'important');
   });
 
   // Die obige Zeile blendet pauschal ALLE "nav-eigene-only"-Punkte wieder ein
   // (auch den Tanken-Button) - hier direkt danach nochmal korrekt auf die
   // Fahrzeugart des aktiven Fahrzeugs anwenden, sonst würde z.B. bei einem
   // Anhänger der Tanken-Tab nach jedem Tab-Wechsel wieder auftauchen.
-  if (!isCustomerMode) {
-    const active = (typeof getActiveVehicle === 'function') ? getActiveVehicle() : null;
-    if (active && typeof updateNavForCategory === 'function') {
-      updateNavForCategory(active);
-    }
+  const active = (typeof getActiveVehicle === 'function') ? getActiveVehicle() : null;
+  if (active && typeof updateNavForCategory === 'function') {
+    updateNavForCategory(active);
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -405,9 +394,8 @@ function showTab(tabId, element) {
   // 5. Tab-Inhalte rendern
   try {
     if (tabId === 'dashboard' && typeof renderDashboard === 'function') renderDashboard();
-    else if (tabId === 'service' && typeof renderCustomerServiceTable === 'function') renderCustomerServiceTable();
+    else if (tabId === 'service' && typeof renderServiceTable === 'function') renderServiceTable();
     else if (tabId === 'history' && typeof renderHistoryTable === 'function') renderHistoryTable();
-    else if (tabId === 'customers' && typeof renderCustomerSection === 'function') renderCustomerSection();
     else if (tabId === 'settings' && typeof loadVehicleSettingsIntoForm === 'function') loadVehicleSettingsIntoForm();
   } catch (err) {
     console.error(`Fehler beim Laden von Tab ${tabId}:`, err);
@@ -426,7 +414,6 @@ function chooseGarageVehicle(vehicleId, startTab) {
 
   // Modus "Eigene Fahrzeuge" aktivieren
   document.body.classList.add('mode-eigene');
-  document.body.classList.remove('mode-kunden');
 
   // Daten des gewählten Fahrzeugs laden (Tanken, Wartung, Historie, Dashboard...)
   renderVehicleSelect();

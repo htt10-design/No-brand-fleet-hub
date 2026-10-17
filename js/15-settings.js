@@ -80,15 +80,13 @@ function summarizeBackupData(data) {
   return {
     vehicles: vehicles.length,
     fuel: vehicles.reduce((sum, v) => sum + (v.fuelEntries || []).length, 0),
-    services: vehicles.reduce((sum, v) => sum + (v.serviceEntries || []).filter(s => !s.isStandEntry).length, 0),
-    customers: (data.customerVehicles || []).length
+    services: vehicles.reduce((sum, v) => sum + (v.serviceEntries || []).filter(s => !s.isStandEntry).length, 0)
   };
 }
 
 function formatBackupSummary(sum) {
   const n = (count, one, many) => `${count} ${count === 1 ? one : many}`;
   const parts = [n(sum.vehicles, 'Fahrzeug', 'Fahrzeuge'), n(sum.fuel, 'Tankung', 'Tankungen'), n(sum.services, 'Wartung/Ausgabe', 'Wartungen/Ausgaben')];
-  if (sum.customers > 0) parts.push(n(sum.customers, 'Kundenfahrzeug', 'Kundenfahrzeuge'));
   return parts.join(', ');
 }
 
@@ -128,8 +126,6 @@ function importData(event) {
 
     delete parsed.exportedAt;
     appData = parsed;
-    if (!appData.businessInfo) appData.businessInfo = getDefaultBusinessInfo();
-    if (!appData.customerVehicles) appData.customerVehicles = [];
     // Das wiederhergestellte Backup gilt als gesichert (die Datei existiert ja)
     appData.lastChangeDate = backupDateIso || null;
     saveData({ keepChangeDate: true });
@@ -214,22 +210,12 @@ function updateLastBackupInfo() {
 }
 
 function openSettingsModal() {
-  const info = appData.businessInfo || getDefaultBusinessInfo();
-  document.getElementById('bizName').value = info.name || '';
-  document.getElementById('bizSubtitle').value = info.subtitle || '';
-  document.getElementById('bizIban').value = info.iban || '';
-  document.getElementById('bizBic').value = info.bic || '';
-  document.getElementById('bizBank').value = info.bank || '';
-  document.getElementById('bizPaypalMe').value = info.paypalMe || '';
-  document.getElementById('bizPaypalEmail').value = info.paypalEmail || '';
-
   updateLastBackupInfo();
   const reminderSelect = document.getElementById('backupReminderDays');
   if (reminderSelect) reminderSelect.value = String(getBackupReminderDays());
   const shareBtn = document.getElementById('backupShareBtn');
   if (shareBtn) shareBtn.style.display = canShareBackup() ? '' : 'none';
   applyDesign(getDesign());
-  applyCustomerVehiclesVisibility();
   applyVehicleCategoryToggleVisibility();
   applyFuelDealSettingsUI();
 
@@ -242,24 +228,9 @@ function closeSettingsModal() {
 }
 window.closeSettingsModal = closeSettingsModal;
 
-function saveBusinessInfo(e) {
-  e.preventDefault();
-  appData.businessInfo = {
-    name: document.getElementById('bizName').value,
-    subtitle: document.getElementById('bizSubtitle').value,
-    iban: document.getElementById('bizIban').value,
-    bic: document.getElementById('bizBic').value,
-    bank: document.getElementById('bizBank').value,
-    paypalMe: document.getElementById('bizPaypalMe').value,
-    paypalEmail: document.getElementById('bizPaypalEmail').value
-  };
-  saveData();
-  alert("Rechnungsdaten gespeichert.");
-}
-window.saveBusinessInfo = saveBusinessInfo;
 
 function resetAllData() {
-  if (!confirm("ACHTUNG: Damit werden ALLE Fahrzeuge, Kunden und Einstellungen auf diesem Gerät unwiderruflich gelöscht. Dies kann nicht rückgängig gemacht werden. Fortfahren?")) {
+  if (!confirm("ACHTUNG: Damit werden ALLE Fahrzeuge und Einstellungen auf diesem Gerät unwiderruflich gelöscht. Dies kann nicht rückgängig gemacht werden. Fortfahren?")) {
     return;
   }
   if (!confirm("Letzte Sicherheitsabfrage: Wirklich ALLE Daten endgültig löschen?")) {

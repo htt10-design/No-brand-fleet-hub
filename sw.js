@@ -5,7 +5,7 @@
 // Nur so merkt der Browser, dass es eine neue Version gibt und lädt sie
 // nach - sonst bekommen Nutzer u.U. dauerhaft die alte, zwischengespeicherte
 // Version ausgeliefert.
-const CACHE_VERSION = 'fleethub-v4';
+const CACHE_VERSION = 'fleethub-v5';
 
 // Alle Dateien, die die App offline-fähig machen ("App-Shell")
 const APP_SHELL_FILES = [
@@ -27,7 +27,6 @@ const APP_SHELL_FILES = [
   './js/11-fahrzeugschein.js',
   './js/12-stand-entry.js',
   './js/13-dashboard.js',
-  './js/14-customers.js',
   './js/15-settings.js',
   './js/16-sale-report.js',
   './js/17-acar-import.js',

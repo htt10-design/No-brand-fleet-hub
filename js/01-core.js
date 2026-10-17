@@ -1,40 +1,23 @@
 /* --- STATE MANAGEMENT --- */
 let appData = {
   activeVehicleId: null,
-  activeCustomerVehicleId: null,
   design: "werkstatt",
   theme: "dark",
   backgroundStyle: "plain",
   accentColor: "amber",
   uiStyle: "standard",
-  customerVehiclesEnabled: true,
   boatCategoryEnabled: true,
   trailerCategoryEnabled: true,
   // Reserviert für eine spätere frei konfigurierbare Sonderkategorie
   // (z.B. Bagger, Radlader, ...) - noch ohne UI, nur Datenstruktur vorbereitet
   customVehicleCategories: [],
   vehicles: [],
-  customerVehicles: [],
-  businessInfo: null,
   lastBackupDate: null
 };
 
-// Vorbelegung für die Rechnungsdaten (Fußzeile der Kundenrechnung), editierbar in den Einstellungen
-function getDefaultBusinessInfo() {
-  return {
-    name: "Meine Werkstatt",
-    subtitle: "Fahrzeugservice & Werkstattdokumentation",
-    iban: "DE00 0000 0000 0000 0000 00",
-    bic: "XXXXXXXXXXX",
-    bank: "Musterbank",
-    paypalMe: "paypal.me/deinname",
-    paypalEmail: "mail@beispiel.de"
-  };
-}
 
 let consumptionChartInstance = null;
 let tempServiceImages = [];
-let tempCustomerServiceImages = [];
 
 /* --- TÜV/HU-ASSISTENT: geführter 6-Schritte-Wizard --- */
 let tuevWizardState = null;
@@ -97,13 +80,12 @@ function fhIdbDelete(key) {
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
 
-  // Splash-Screen (Logo) kurz zeigen, dann sanft ausblenden
-  const splash = document.getElementById('splashScreen');
-  if (splash) {
-    setTimeout(() => {
-      splash.classList.add('splash-hide');
-    }, 1200);
-  }
+  // Start-Animation: Das Rolltor (mit Logo) ist beim Laden bereits geschlossen
+  // und fährt hoch - dahinter wartet direkt "Meine Garage"
+  setTimeout(() => {
+    const door = document.getElementById('garage-door-overlay');
+    if (door) door.classList.remove('active');
+  }, 2050);
 
   // Service Worker registrieren (App-Shell-Caching, Offline-Fähigkeit) und
   // den Browser bitten, den Speicher der App als "wichtig" einzustufen,
@@ -159,19 +141,10 @@ async function initApp() {
     appData.activeVehicleId = appData.vehicles[0].id;
   }
 
-  if (!appData.customerVehicles) {
-    appData.customerVehicles = [];
-  }
 
   // Migration: ältere Datenstände bekommen die neuen Einstellungsfelder nachgereicht
-  if (!appData.businessInfo) {
-    appData.businessInfo = getDefaultBusinessInfo();
-  }
   if (appData.lastBackupDate === undefined) {
     appData.lastBackupDate = null;
-  }
-  if (appData.customerVehiclesEnabled === undefined) {
-    appData.customerVehiclesEnabled = true;
   }
   if (appData.boatCategoryEnabled === undefined) {
     appData.boatCategoryEnabled = true;
@@ -204,7 +177,6 @@ async function initApp() {
   });
 
   applyDesign(getDesign());
-  applyCustomerVehiclesVisibility();
   applyVehicleCategoryToggleVisibility();
 
   const fuelDateEl = document.getElementById('fuelDate');
@@ -216,7 +188,6 @@ async function initApp() {
   if (custServiceDateEl) custServiceDateEl.value = new Date().toISOString().split('T')[0];
 
   renderVehicleSelect();
-  renderCustomerVehicleSelect();
   loadActiveVehicle();
 
   // ERGÄNZUNG: Initial auf das Dashboard wechseln
@@ -224,13 +195,13 @@ async function initApp() {
   showTab('dashboard', defaultNavBtn);
 
   renderBackupReminder();
+  showGarageSelection();
 }
 
 function loadDefaultData() {
   appData = {
     activeVehicleId: "v1",
-    activeCustomerVehicleId: null,
-    theme: "dark",
+      theme: "dark",
     vehicles: [
       {
         id: "v1",
@@ -267,8 +238,6 @@ function loadDefaultData() {
         ]
       }
     ],
-    customerVehicles: [],
-    businessInfo: getDefaultBusinessInfo(),
     lastBackupDate: null,
     design: "werkstatt"
   };
@@ -292,9 +261,6 @@ function getActiveVehicle() {
   return appData.vehicles.find(v => v.id === appData.activeVehicleId);
 }
 
-function getActiveCustomerVehicle() {
-  return appData.customerVehicles.find(c => c.id === appData.activeCustomerVehicleId);
-}
 
 /* --- THEME TOGGLE --- */
 /* --- DESIGN: genau zwei fertige Designs statt frei kombinierbarer Optionen ---
@@ -375,112 +341,25 @@ function applyUiStyle(style) {
 
 
 
-// Blendet die Kachel "Kundenfahrzeuge" auf dem Startbildschirm ein/aus,
-// je nachdem ob die Funktion in den Einstellungen aktiviert ist
-function applyCustomerVehiclesVisibility() {
-  const enabled = appData.customerVehiclesEnabled !== false;
 
-  const cardKunden = document.getElementById('card-kunden');
-  const areaGrid = document.getElementById('area-selection-grid');
-  if (cardKunden) cardKunden.style.display = enabled ? '' : 'none';
-  if (areaGrid) areaGrid.classList.toggle('single-area', !enabled);
-
-  const onBtn = document.getElementById('customerToggleOn');
-  const offBtn = document.getElementById('customerToggleOff');
-  if (onBtn) onBtn.classList.toggle('active', enabled);
-  if (offBtn) offBtn.classList.toggle('active', !enabled);
-
-  // Falls man gerade im Kundenmodus ist und die Funktion deaktiviert wird,
-  // zurück zur Bereichsauswahl springen statt in einem ausgeblendeten Bereich hängen zu bleiben
-  if (!enabled && currentMode === 'kunden') {
-    backToSelection();
-  }
-}
-
-function setCustomerVehiclesEnabled(enabled) {
-  appData.customerVehiclesEnabled = enabled;
-  saveData();
-  applyCustomerVehiclesVisibility();
-}
-window.setCustomerVehiclesEnabled = setCustomerVehiclesEnabled;
 
 // Variable zur Speicherung des aktuellen Modus
-let currentMode = 'eigene';
-// Hilfsfunktion zur Auslösung der verlangsamten Garagentor-Animation (Mercedes Edition)
-function triggerGarageAnimation(callback) {
-  const overlay = document.getElementById('garage-door-overlay');
-  if (!overlay) {
-    if (callback) callback();
-    return;
-  }
-
-  overlay.classList.add('active');
-
-  // Schaltet die Ansicht nach 1000ms um (genau bei der Hälfte der 2.0s)
-  setTimeout(() => {
-    if (callback) callback();
-  }, 1000);
-
-  // Blendet das Overlay nach Ablauf der 2.0s Gesamtzeit wieder ab
-  setTimeout(() => {
-    overlay.classList.remove('active');
-  }, 2050);
-}
+let currentMode = 'eigene'; // Nur noch eigene Fahrzeuge (kein Kundenbereich)
 
 
 // Bereichsauswahl steuern
-function selectArea(area) {
-  if (area === 'eigene') {
-    // Tor-Animation auslösen
-    triggerGarageAnimation(() => {
-      // 1. Erst die Hauptkacheln ausblenden und die Fahrzeugauswahl einblenden
-      const areaGrid = document.getElementById('area-selection-grid');
-      const garageSelection = document.getElementById('garage-vehicle-selection');
-      const title = document.getElementById('selection-title');
-
-      if (areaGrid) areaGrid.style.display = 'none';
-      if (garageSelection) garageSelection.style.display = 'block';
-      if (title) title.innerText = 'Wähle dein Fahrzeug';
-
-      // 2. Danach die gespeicherten Fahrzeuge als Kacheln laden
-      try {
-        renderGarageVehicleTiles();
-      } catch (err) {
-        console.error("Fehler beim Laden der Fahrzeug-Kacheln:", err);
-      }
-    });
-  } else if (area === 'kunden') {
-    // Kundenbereich bleibt wie gehabt: direkt in die App
-    currentMode = 'kunden';
-
-    document.getElementById('selection-screen').classList.add('hidden');
-    document.getElementById('app-wrapper').classList.remove('hidden');
-    document.body.classList.add('mode-kunden');
-    document.body.classList.remove('mode-eigene');
-
-    // 1. Korrekten ersten Tab öffnen und Sidebar-Button aktivieren
-    const firstCustomerTabBtn = document.querySelector('.nav-kunden-only');
-    if (typeof showTab === 'function') {
-      showTab('tab-customer-records', firstCustomerTabBtn);
-    }
-
-    // 2. Kundenfahrzeuge laden und Ansicht sicher befüllen
-    try {
-      if (typeof renderCustomerVehicles === 'function') {
-        renderCustomerVehicles();
-      }
-
-      // Automatisches Auswählen des ersten Fahrzeugs, damit Stammdaten & Arbeiten sofort da sind
-      if (!appData.activeCustomerVehicleId && appData.customerVehicles.length > 0) {
-        appData.activeCustomerVehicleId = appData.customerVehicles[0].id;
-        saveData();
-      }
-      renderCustomerSection();
-    } catch (err) {
-      console.error("Fehler beim Laden der Kundendaten:", err);
-    }
+// Startseite "Meine Garage": Fahrzeugkacheln anzeigen (ohne Bereichsauswahl)
+function showGarageSelection() {
+  currentMode = 'eigene';
+  document.getElementById('app-wrapper').classList.add('hidden');
+  document.getElementById('selection-screen').classList.remove('hidden');
+  try {
+    renderGarageVehicleTiles();
+  } catch (err) {
+    console.error("Fehler beim Laden der Fahrzeug-Kacheln:", err);
   }
 }
+window.showGarageSelection = showGarageSelection;
 
 
 // Ermittelt den aktuellen Kilometer-/Betriebsstundenstand aus Tank- & Wartungseinträgen

@@ -19,16 +19,8 @@
 </head>
 <body>
 
-<!-- SPLASH-SCREEN: Logo blitzt kurz beim App-Start auf -->
-<div id="splashScreen" class="splash-screen">
-  <div class="splash-logo-wrap">
-    <span class="app-logo-img logo-for-dark splash-logo"></span>
-    <span class="app-logo-img logo-for-light splash-logo"></span>
-  </div>
-</div>
-
-<!-- GARAGEN-TOR OVERLAY (Rolltor fährt beim Öffnen der Garage hoch) -->
-<div id="garage-door-overlay" class="garage-door-overlay">
+<!-- GARAGEN-TOR: fährt beim App-Start hoch und gibt den Blick in die Garage frei -->
+<div id="garage-door-overlay" class="garage-door-overlay active">
   <div class="garage-door-panel">
     <div class="slat"></div>
     <div class="slat"></div>
@@ -45,7 +37,7 @@
 
 
 
-<!-- STEP 1: KACHEL-AUSWAHL STARTBILDSCHIRM -->
+<!-- STARTSEITE: MEINE GARAGE (Fahrzeugauswahl) -->
 <div id="selection-screen" class="selection-container">
   <div class="header-controls-floating">
     <button class="btn-theme-toggle" id="themeToggleBtnSelection" onclick="toggleTheme()" title="Design wechseln (Werkstatt / Showroom)">
@@ -61,44 +53,15 @@
       <span class="app-logo-img logo-for-light"></span>
       <span>Serviceheft<span class="brand-plus">+</span></span>
     </div>
-    <h2 id="selection-title">Bereichsauswahl</h2>
+    <h2 id="selection-title">Meine Garage</h2>
+    <p class="garage-subtitle" id="garageSubtitle"></p>
   </header>
 
   <!-- Backup-Erinnerung (nur sichtbar, wenn ein Backup fällig ist) -->
   <div class="backup-reminder" id="backupReminder" style="display: none;"></div>
 
-  <!-- Bereichsauswahl (Hauptkacheln) -->
-  <div class="kachel-grid" id="area-selection-grid">
-    <div class="selection-card" id="card-eigene" onclick="selectArea('eigene')">
-      <div class="kachel-icon">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
-      </div>
-      <h3>Meine Garage</h3>
-      <p>Fahrzeugkartei, Wartungsprotokolle, Kraftstofferfassung & Betriebskosten</p>
-    </div>
-
-    <div class="selection-card" id="card-kunden" onclick="selectArea('kunden')">
-      <div class="kachel-icon">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-      </div>
-      <h3>Kundenfahrzeuge</h3>
-      <p>Werkstattaufträge, Kundenstammblatt & Rechnungsgenerierung</p>
-    </div>
-  </div>
-
   <!-- Fahrzeugauswahl -->
-  <div id="garage-vehicle-selection" style="display: none; margin-top: 1.5rem; width: 100%;">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-      <button type="button" class="btn-back-clean" onclick="showAreaSelection()" title="Zurück" aria-label="Zurück">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M19 12H5"></path>
-    <path d="M12 19l-7-7 7-7"></path>
-  </svg>
-</button>
-
-      <button type="button" class="btn btn-primary btn-sm" onclick="openVehicleModal()">+ Neues Fahrzeug</button>
-    </div>
-
+  <div id="garage-vehicle-selection" style="width: 100%;">
     <div class="category-filter-row" id="categoryFilterRow">
       <button type="button" class="category-filter-chip active" data-category="all" onclick="setVehicleCategoryFilter('all')">
         <span>Alle</span>
@@ -181,18 +144,6 @@
       </button>
 
       <!-- BUTTONS FÜR KUNDENFAHRZEUGE -->
-      <button class="nav-item nav-kunden-only" onclick="showTab('customer-records', this)">
-        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="nav-label">Kundenkartei</span>
-      </button>
-      <button class="nav-item nav-kunden-only" onclick="showTab('customer-tasks', this)">
-        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        <span class="nav-label">Arbeiten</span>
-      </button>
-      <button class="nav-item nav-kunden-only" onclick="showTab('customer-maintenance', this)">
-        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
-        <span class="nav-label">Wartung</span>
-      </button>
     </nav>
 
     <main class="main-content">
@@ -683,137 +634,6 @@
           </div>
         </section>
 
-               <!-- CUSTOMER RECORDS TAB (Kundenkartei) -->
-        <section id="tab-customer-records" class="tab-content">
-          <div class="card">
-            <div class="card-header-flex">
-              <h2>Kundenkartei & Stammdaten</h2>
-              <button class="btn btn-primary" onclick="openCustomerVehicleModal()">+ Neues Kundenfahrzeug</button>
-            </div>
-            <p class="sub-text">Verwaltung von Fremdfahrzeugen und Halterinformationen.</p>
-
-            <div class="form-group customer-select-group" style="margin-top: 1rem;">
-              <label>Kundenfahrzeug auswählen</label>
-              <button type="button" class="customer-select-toggle" id="customerSelectToggle" onclick="toggleCustomerSelectPanel()">
-                <span id="customerSelectToggleLabel">-- Kundenfahrzeug wählen --</span>
-                <span class="customer-select-toggle-arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                </span>
-              </button>
-
-              <div class="customer-select-panel hidden" id="customerSelectPanel">
-                <input type="text" id="customerSearchInput" placeholder="Suche nach Name oder Kennzeichen..." oninput="renderCustomerVehicleList()">
-                <div class="customer-select-list" id="customerSelectList"></div>
-              </div>
-            </div>
-          </div>
-
-          <div id="customerVehicleContent" style="display: none;">
-            <div class="card">
-              <div class="card-header-flex">
-                <div>
-                  <h2 id="custBannerName">Kunden Name - Fahrzeug</h2>
-                  <span class="badge badge-plate" id="custBannerPlate">KI-XX 123</span>
-                </div>
-                <div style="display: flex; gap: 0.5rem;">
-                  <button class="btn btn-secondary btn-sm" onclick="openCustomerVehicleModal(true)">Stammdaten bearbeiten</button>
-                  <button class="btn btn-danger btn-sm" onclick="deleteCurrentCustomerVehicle()">Fahrzeug löschen</button>
-                </div>
-              </div>
-              <div class="detail-grid" style="margin-top: 1rem;">
-                <div><strong>Kunde:</strong> <span id="custBannerOwner">-</span></div>
-                <div><strong>Kontakt:</strong> <span id="custBannerContact">-</span></div>
-                <div><strong>VIN / FIN:</strong> <span id="custBannerVin">-</span></div>
-                <div><strong>HSN / TSN:</strong> <span id="custBannerHsnTsn">-</span></div>
-                <div><strong>Erstzulassung:</strong> <span id="custBannerFirstReg">-</span></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-                <!-- CUSTOMER TASKS TAB (Arbeiten - Nur Tabelle) -->
-        <section id="tab-customer-tasks" class="tab-content">
-          <div class="card">
-            <div class="card-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-              <h3 style="margin: 0;">Durchgeführte Arbeiten</h3>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="openCombinedInvoiceModal()" title="Mehrere Aufträge auf eine Rechnung">🖨️ Sammelrechnung</button>
-            </div>
-
-            <div class="table-responsive">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Datum</th>
-                    <th>Titel</th>
-                    <th>KM-Stand</th>
-                    <th>Gesamt</th>
-                    <th style="text-align: right;">Aktionen</th>
-                  </tr>
-                </thead>
-                <tbody id="custServiceTableBody"></tbody>
-              </table>
-            </div>
-
-            <div id="custServiceToggleBtnContainer" style="display: none; text-align: center; margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color, #eee);">
-              <button id="custServiceToggleBtn" class="btn btn-secondary" onclick="toggleCustomerServiceEntries()">
-                Mehr anzeigen
-              </button>
-            </div>
-          </div>
-        </section>
-
-             <!-- CUSTOMER MAINTENANCE TAB (Werkstattauftrag erfassen) -->
-        <section id="tab-customer-maintenance" class="tab-content">
-          <div class="card">
-            <h2 id="custServiceFormTitle">Werkstattauftrag erfassen</h2>
-            <form id="custServiceForm" onsubmit="saveCustomerServiceEntry(event)">
-              <input type="hidden" id="custServiceEditId">
-              
-              <div class="form-group">
-                <label>Auftragsbezeichnung</label>
-                <input type="text" id="custServiceTitle" required placeholder="z.B. Bremsanlage VA erneuern & Inspektion">
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Datum</label>
-                  <input type="date" id="custServiceDate" required>
-                </div>
-                <div class="form-group">
-                  <label>KM-Stand</label>
-                  <input type="number" step="0.1" id="custServiceMileage" inputmode="decimal" required placeholder="145000">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Einzelpositionen (Für Rechnungsdruck)</label>
-                <div id="invoiceItemsContainer"></div>
-                <button type="button" class="btn btn-secondary btn-sm" style="margin-top:0.5rem;" onclick="addInvoiceItemRow()">+ Position hinzufügen</button>
-              </div>
-
-              <div class="form-group">
-                <label>Gesamtsumme (€)</label>
-                <input type="number" step="0.01" id="custServiceTotalCost" inputmode="decimal" required placeholder="0.00">
-              </div>
-
-              <div class="form-group">
-                <label>Arbeitsbericht / Kundennote</label>
-                <textarea id="custServiceNotes" rows="3" placeholder="z.B. Durchführung nach Herstellervorgabe..."></textarea>
-              </div>
-
-              <div class="form-group">
-                <label>Dokumentation & Bilder</label>
-                <input type="file" id="custServiceImagesInput" accept="image/*" multiple onchange="handleCustomerServiceImageUpload(event)">
-                <div id="custServiceImagePreviewContainer" class="image-preview-grid"></div>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn btn-primary" id="custServiceSubmitBtn">Auftrag Speichern</button>
-                <button type="button" class="btn btn-secondary" onclick="resetCustomerServiceForm()" id="custServiceCancelBtn" style="display:none;">Abbrechen</button>
-              </div>
-            </form>
-          </div>
-        </section>
 
 
         <!-- SETTINGS TAB -->
@@ -1115,16 +935,7 @@
         <details class="settings-accordion">
           <summary><span class="settings-summary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span>Funktionen</summary>
 
-          <div class="theme-switch-row">
-            <span class="sub-text" style="margin: 0;">Kundenfahrzeuge verwenden</span>
-            <div class="theme-switch">
-              <button type="button" class="theme-switch-btn" id="customerToggleOn" onclick="setCustomerVehiclesEnabled(true)">An</button>
-              <button type="button" class="theme-switch-btn" id="customerToggleOff" onclick="setCustomerVehiclesEnabled(false)">Aus</button>
-            </div>
-          </div>
-          <p class="sub-text" style="margin-top: 0.5rem;">Blendet die Kachel "Kundenfahrzeuge" auf dem Startbildschirm ein oder aus. Bereits vorhandene Kundendaten bleiben dabei erhalten und sind wieder da, sobald du es erneut aktivierst.</p>
-
-          <div class="theme-switch-row" style="margin-top: 1rem;">
+                    <div class="theme-switch-row" style="margin-top: 1rem;">
             <span class="sub-text" style="margin: 0;">Boote als Fahrzeugart</span>
             <div class="theme-switch">
               <button type="button" class="theme-switch-btn" id="bootCategoryToggleOn" onclick="setBoatCategoryEnabled(true)">An</button>
@@ -1241,53 +1052,9 @@
       </div>
 
       <div class="detail-section">
-        <details class="settings-accordion" id="bizDetails">
-          <summary><span class="settings-summary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Rechnungsdaten für Ausdrucke</summary>
-          <p class="sub-text">Diese Angaben erscheinen auf der gedruckten Kundenrechnung.</p>
-          <form onsubmit="saveBusinessInfo(event)">
-            <div class="form-group">
-              <label>Firmenname</label>
-              <input type="text" id="bizName">
-            </div>
-            <div class="form-group">
-              <label>Untertitel</label>
-              <input type="text" id="bizSubtitle">
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>IBAN</label>
-                <input type="text" id="bizIban">
-              </div>
-              <div class="form-group">
-                <label>BIC</label>
-                <input type="text" id="bizBic">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Bank</label>
-              <input type="text" id="bizBank">
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>PayPal-Me Link</label>
-                <input type="text" id="bizPaypalMe">
-              </div>
-              <div class="form-group">
-                <label>PayPal E-Mail</label>
-                <input type="text" id="bizPaypalEmail">
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Rechnungsdaten Speichern</button>
-            </div>
-          </form>
-        </details>
-      </div>
-
-      <div class="detail-section">
         <details class="settings-accordion settings-accordion-danger">
           <summary><span class="settings-summary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>Gefahrenzone</summary>
-          <p class="sub-text">Löscht unwiderruflich alle Fahrzeuge, Kunden und Einstellungen von diesem Gerät.</p>
+          <p class="sub-text">Löscht unwiderruflich alle Fahrzeuge und Einstellungen von diesem Gerät.</p>
           <button type="button" class="btn btn-danger" onclick="resetAllData()">Alle Daten löschen</button>
         </details>
       </div>
@@ -1360,60 +1127,6 @@
         <div class="modal-actions">
           <button type="submit" class="btn btn-primary">Anlegen</button>
           <button type="button" class="btn btn-secondary" onclick="closeVehicleModal()">Abbrechen</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="customerVehicleModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 id="custModalTitle">Kundenfahrzeug anlegen</h3>
-        <button class="modal-close" onclick="closeCustomerVehicleModal()">✕</button>
-      </div>
-      <form onsubmit="saveCustomerVehicleModal(event)">
-        <input type="hidden" id="custModalEditId">
-        <div class="form-group">
-          <label>Kundenname / Halter</label>
-          <input type="text" id="custModalOwner" required placeholder="z.B. Max Mustermann">
-        </div>
-        <div class="form-group">
-          <label>Kontakt (Telefon / E-Mail)</label>
-          <input type="text" id="custModalContact" placeholder="z.B. 0170 1234567">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Fahrzeugmodell</label>
-            <input type="text" id="custModalModel" required placeholder="z.B. VW Golf 7 GTI">
-          </div>
-          <div class="form-group">
-            <label>Kennzeichen</label>
-            <input type="text" id="custModalPlate" placeholder="KI-AB 789">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>FIN / VIN</label>
-            <input type="text" id="custModalVin" placeholder="WVWZZZ...">
-          </div>
-          <div class="form-group">
-            <label>Erstzulassung</label>
-            <input type="date" id="custModalFirstReg">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>HSN</label>
-            <input type="text" id="custModalHsn" maxlength="4" placeholder="0603">
-          </div>
-          <div class="form-group">
-            <label>TSN</label>
-            <input type="text" id="custModalTsn" maxlength="10" placeholder="ABC">
-          </div>
-        </div>
-        <div class="modal-actions">
-          <button type="submit" class="btn btn-primary">Speichern</button>
-          <button type="button" class="btn btn-secondary" onclick="closeCustomerVehicleModal()">Abbrechen</button>
         </div>
       </form>
     </div>
@@ -1682,54 +1395,7 @@
     </div>
   </div>
 
-  <div class="modal-overlay" id="combinedInvoiceModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Sammelrechnung</h3>
-        <button class="modal-close" onclick="closeCombinedInvoiceModal()">✕</button>
-      </div>
-      <p class="sub-text">Wähle die Aufträge, die auf eine gemeinsame Rechnung sollen. Die Rechnung wird nach Auftrag gegliedert, mit Zwischensummen und Gesamtsumme.</p>
-      <div class="combined-invoice-list" id="combinedInvoiceList"></div>
-      <p class="combined-invoice-summary" id="combinedInvoiceSummary"></p>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-primary" id="combinedInvoicePrintBtn" onclick="printCombinedInvoice()" disabled>🖨️ Rechnung drucken</button>
-        <button type="button" class="btn btn-secondary" onclick="closeCombinedInvoiceModal()">Abbrechen</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="customerServiceDetailModal">
-    <div class="modal modal-lg">
-      <div class="modal-header">
-        <h3 id="csdTitle">Auftragsdetails</h3>
-        <button class="modal-close" onclick="closeCustomerServiceDetailModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="detail-grid">
-          <div><strong>Datum:</strong> <span id="csdDate">-</span></div>
-          <div><strong>Stand:</strong> <span id="csdMileage">-</span></div>
-          <div><strong>Gesamtsumme:</strong> <span id="csdTotalCost">-</span></div>
-        </div>
-
-        <div class="detail-section">
-          <h4>Arbeitsbericht / Dokumentation:</h4>
-          <p id="csdNotes" class="detail-notes-box">Keine Notizen vorhanden.</p>
-        </div>
-
-        <div class="detail-section">
-          <h4>Angehängte Dokumente & Bilder:</h4>
-          <div id="csdImagesContainer" class="detail-image-gallery">
-            <span class="text-muted">Keine Bilder vorhanden.</span>
-          </div>
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-primary" id="csdEditBtn">Bearbeiten</button>
-        <button class="btn btn-secondary" onclick="closeCustomerServiceDetailModal()">Schließen</button>
-      </div>
-    </div>
-  </div>
-
+  <!-- Druckbereich (Verkaufsbericht) -->
   <div id="printableInvoice" class="print-only"></div>
 
   <!-- App-Logik, aufgeteilt nach Bereichen. Reihenfolge beibehalten (siehe CLAUDE.md). -->
@@ -1746,7 +1412,6 @@
   <script src="js/11-fahrzeugschein.js"></script>
   <script src="js/12-stand-entry.js"></script>
   <script src="js/13-dashboard.js"></script>
-  <script src="js/14-customers.js"></script>
   <script src="js/15-settings.js"></script>
   <script src="js/16-sale-report.js"></script>
   <script src="js/17-acar-import.js"></script>

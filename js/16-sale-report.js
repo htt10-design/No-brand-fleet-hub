@@ -1,3 +1,12 @@
+// Öffnet den Druckdialog erst, wenn alle Bilder im Druckbereich geladen sind
+// - sonst fehlen sie u.U. im Ausdruck.
+function printWhenImagesLoaded(container) {
+  const pending = Array.from(container.querySelectorAll('img'))
+    .filter(img => !img.complete)
+    .map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }));
+  Promise.all(pending).then(() => window.print());
+}
+
 function printSaleReport() {
   const v = getActiveVehicle();
   const printContainer = document.getElementById('printableInvoice');
@@ -210,8 +219,8 @@ function printSaleReport() {
     </div>
   `;
 
-  // Druckdialog öffnen
-  window.print();
+  // Druckdialog öffnen, sobald das Fahrzeugfoto geladen ist
+  printWhenImagesLoaded(printContainer);
 }
 
 window.printSaleReport = printSaleReport;
