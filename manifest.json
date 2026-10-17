@@ -1,6 +1,6 @@
 {
-  "name": "Fleet Hub – Fahrzeug-Management",
-  "short_name": "Fleet Hub",
+  "name": "Serviceheft+",
+  "short_name": "Serviceheft+",
   "description": "Fahrzeug- und Flottenverwaltung für Autos, Anhänger und Boote",
   "start_url": "./index.html",
   "scope": "./",

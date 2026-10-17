@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Fleet Hub – Fahrzeug-Management</title>
+  <title>Serviceheft+</title>
   <link rel="icon" type="image/png" href="icons/logo-dark.png">
   <link rel="stylesheet" href="style.css">
   <script src="vendor/chart.umd.min.js"></script>
@@ -14,7 +14,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Fleet Hub">
+  <meta name="apple-mobile-web-app-title" content="Serviceheft+">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
@@ -43,7 +43,7 @@
 <!-- STEP 1: KACHEL-AUSWAHL STARTBILDSCHIRM -->
 <div id="selection-screen" class="selection-container">
   <div class="header-controls-floating">
-    <button class="btn-theme-toggle" id="themeToggleBtnSelection" onclick="toggleTheme()" title="Design wechseln">
+    <button class="btn-theme-toggle" id="themeToggleBtnSelection" onclick="toggleTheme()" title="Design wechseln (Werkstatt / Showroom)">
       <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
     </button>
     <button class="btn-theme-toggle" onclick="openSettingsModal()" title="Einstellungen">
@@ -54,7 +54,7 @@
     <div class="logo">
       <span class="app-logo-img logo-for-dark"></span>
       <span class="app-logo-img logo-for-light"></span>
-      <span>Fleet Hub</span>
+      <span>Serviceheft<span class="brand-plus">+</span></span>
     </div>
     <h2 id="selection-title">Bereichsauswahl</h2>
   </header>
@@ -137,11 +137,11 @@
       <div class="logo">
         <span class="app-logo-img logo-for-dark"></span>
         <span class="app-logo-img logo-for-light"></span>
-        <span>Fleet Hub</span>
+        <span>Serviceheft<span class="brand-plus">+</span></span>
       </div>
     </div>
     <div class="header-controls">
-      <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Design wechseln">
+      <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Design wechseln (Werkstatt / Showroom)">
         <svg class="icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
       <button class="btn-theme-toggle" onclick="openSettingsModal()" title="Einstellungen">
@@ -1090,74 +1090,19 @@
         <details class="settings-accordion">
           <summary><span class="settings-summary-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>Darstellung</summary>
 
-          <div class="theme-switch-row">
-            <span class="sub-text" style="margin: 0;">Farbschema</span>
-            <div class="theme-switch">
-              <button type="button" class="theme-switch-btn" id="themeSwitchLight" onclick="setTheme('light')">Hell</button>
-              <button type="button" class="theme-switch-btn" id="themeSwitchDark" onclick="setTheme('dark')">Dunkel</button>
-            </div>
-          </div>
-
-          <div class="theme-switch-row">
-            <span class="sub-text" style="margin: 0;">Design-Stil</span>
-            <div class="theme-switch">
-              <button type="button" class="theme-switch-btn" id="uiStyleStandard" onclick="setUiStyle('standard')">Standard</button>
-              <button type="button" class="theme-switch-btn" id="uiStyleCockpit" onclick="setUiStyle('cockpit')">Cockpit</button>
-            </div>
-          </div>
-          <p class="sub-text" style="margin-top: -0.4rem;">Das Cockpit-Design zeigt Dashboard-Kennzahlen als Rundinstrumente und Navigation/Filter als Kippschalter.</p>
-
-          <p class="sub-text">App-Hintergrund</p>
-          <div class="bg-style-grid">
-            <button type="button" class="bg-style-option" data-style="concrete" onclick="setBackgroundStyle('concrete')">
-              <span class="bg-style-swatch" data-style="concrete"></span>
-              <span class="bg-style-name">Werkstatt-Beton</span>
+          <div class="design-choice-grid">
+            <button type="button" class="design-choice" data-design-btn="werkstatt" onclick="setDesign('werkstatt')">
+              <span class="design-choice-swatch design-choice-werkstatt"><i></i><i></i><i></i></span>
+              <span class="design-choice-name">Werkstatt</span>
+              <span class="design-choice-desc">Dunkel, Cockpit-Instrumente, Amber</span>
             </button>
-            <button type="button" class="bg-style-option" data-style="grid" onclick="setBackgroundStyle('grid')">
-              <span class="bg-style-swatch" data-style="grid"></span>
-              <span class="bg-style-name">Werkstatt-Raster</span>
-            </button>
-            <button type="button" class="bg-style-option" data-style="vignette" onclick="setBackgroundStyle('vignette')">
-              <span class="bg-style-swatch" data-style="vignette"></span>
-              <span class="bg-style-name">Werkstatt-Licht</span>
-            </button>
-            <button type="button" class="bg-style-option" data-style="mercedes-modern" onclick="setBackgroundStyle('mercedes-modern')">
-              <span class="bg-style-swatch" data-style="mercedes-modern"></span>
-              <span class="bg-style-name">Mercedes Modern</span>
-            </button>
-            <button type="button" class="bg-style-option" data-style="mercedes-classic" onclick="setBackgroundStyle('mercedes-classic')">
-              <span class="bg-style-swatch" data-style="mercedes-classic"></span>
-              <span class="bg-style-name">Mercedes Klassik</span>
+            <button type="button" class="design-choice" data-design-btn="showroom" onclick="setDesign('showroom')">
+              <span class="design-choice-swatch design-choice-showroom"><i></i><i></i><i></i></span>
+              <span class="design-choice-name">Showroom</span>
+              <span class="design-choice-desc">Hell, ruhig &amp; klar, Petrol</span>
             </button>
           </div>
-
-          <p class="sub-text" style="margin-top: 1rem;">Akzentfarbe</p>
-          <div class="accent-color-grid">
-            <button type="button" class="accent-color-option" data-accent="amber" onclick="setAccentColor('amber')">
-              <span class="accent-color-swatch" style="background:#f39c12;"></span>
-              <span class="accent-color-name">Amber</span>
-            </button>
-            <button type="button" class="accent-color-option" data-accent="blue" onclick="setAccentColor('blue')">
-              <span class="accent-color-swatch" style="background:#3b82f6;"></span>
-              <span class="accent-color-name">Blau</span>
-            </button>
-            <button type="button" class="accent-color-option" data-accent="green" onclick="setAccentColor('green')">
-              <span class="accent-color-swatch" style="background:#22c55e;"></span>
-              <span class="accent-color-name">Grün</span>
-            </button>
-            <button type="button" class="accent-color-option" data-accent="red" onclick="setAccentColor('red')">
-              <span class="accent-color-swatch" style="background:#ef4444;"></span>
-              <span class="accent-color-name">Rot</span>
-            </button>
-            <button type="button" class="accent-color-option" data-accent="purple" onclick="setAccentColor('purple')">
-              <span class="accent-color-swatch" style="background:#a855f7;"></span>
-              <span class="accent-color-name">Lila</span>
-            </button>
-            <button type="button" class="accent-color-option" data-accent="teal" onclick="setAccentColor('teal')">
-              <span class="accent-color-swatch" style="background:#14b8a6;"></span>
-              <span class="accent-color-name">Türkis</span>
-            </button>
-          </div>
+          <p class="sub-text" style="margin-top: 0.6rem;">Tipp: Der Mond-Knopf oben wechselt ebenfalls zwischen den beiden Designs.</p>
         </details>
       </div>
 

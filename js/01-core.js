@@ -2,10 +2,11 @@
 let appData = {
   activeVehicleId: null,
   activeCustomerVehicleId: null,
+  design: "werkstatt",
   theme: "dark",
-  backgroundStyle: "concrete",
+  backgroundStyle: "grid",
   accentColor: "amber",
-  uiStyle: "standard",
+  uiStyle: "cockpit",
   customerVehiclesEnabled: true,
   boatCategoryEnabled: true,
   trailerCategoryEnabled: true,
@@ -169,12 +170,6 @@ async function initApp() {
   if (appData.lastBackupDate === undefined) {
     appData.lastBackupDate = null;
   }
-  if (!appData.backgroundStyle) {
-    appData.backgroundStyle = 'concrete';
-  }
-  if (!appData.accentColor) {
-    appData.accentColor = 'amber';
-  }
   if (appData.customerVehiclesEnabled === undefined) {
     appData.customerVehiclesEnabled = true;
   }
@@ -186,9 +181,6 @@ async function initApp() {
   }
   if (!appData.customVehicleCategories) {
     appData.customVehicleCategories = [];
-  }
-  if (!appData.uiStyle) {
-    appData.uiStyle = 'standard';
   }
   // Migration: bestehende Fahrzeuge bekommen den neuen Archiv-Status nachgereicht
   appData.vehicles.forEach(v => {
@@ -211,10 +203,7 @@ async function initApp() {
     }
   });
 
-  applyTheme(appData.theme || 'dark');
-  applyBackgroundStyle(appData.backgroundStyle);
-  applyAccentColor(appData.accentColor);
-  applyUiStyle(appData.uiStyle);
+  applyDesign(getDesign());
   applyCustomerVehiclesVisibility();
   applyVehicleCategoryToggleVisibility();
 
@@ -245,35 +234,35 @@ function loadDefaultData() {
     vehicles: [
       {
         id: "v1",
-        name: "Mercedes E420 (W124)",
-        plate: "KI-E 420",
+        name: "Beispiel: VW Golf 7",
+        plate: "AB-CD 123",
         category: "auto",
         type: "km",
-        fuelType: "Super Plus",
-        vin: "WDB1240341B******",
-        firstReg: "1994-05-12",
-        hsn: "0708",
-        tsn: "420",
-        powerHp: 279,
-        towingBraked: 1900,
-        nextTuev: "2027-05",
+        fuelType: "Super",
+        vin: "",
+        firstReg: "2017-03-01",
+        hsn: "",
+        tsn: "",
+        powerHp: 150,
+        towingBraked: 1600,
+        nextTuev: "2027-03",
         image: "",
-        specs: "Motoröl: MB 229.5 5W-40 (8.0L)\nReifendruck: 2.3 bar / 2.5 bar\nZündkerzen: Bosch F8DC4",
+        specs: "Motoröl: 5W-30 (Freigabe laut Handbuch)\nReifendruck: 2,3 bar / 2,3 bar",
         fuelEntries: [
-          { id: "f1", date: "2026-08-10", fuelType: "Super Plus", mileage: 184200, liters: 72.5, totalPrice: 130.50, pricePerLiter: 1.80, full: true, hasAdditive: true, additiveName: "ERC Benzoinjection Reiniger", notes: "Aral Kiel" },
-          { id: "f2", date: "2026-08-28", fuelType: "Super Plus", mileage: 184750, liters: 68.0, totalPrice: 122.40, pricePerLiter: 1.80, full: true, hasAdditive: false, additiveName: "", notes: "Shell" }
+          { id: "f1", date: "2026-08-10", fuelType: "Super", mileage: 84200, liters: 45.2, totalPrice: 79.10, pricePerLiter: 1.75, full: true, hasAdditive: false, additiveName: "", notes: "Beispiel-Tankung" },
+          { id: "f2", date: "2026-08-28", fuelType: "Super", mileage: 84850, liters: 41.6, totalPrice: 72.80, pricePerLiter: 1.75, full: true, hasAdditive: false, additiveName: "", notes: "" }
         ],
         serviceEntries: [
-          { 
-            id: "s1", 
-            category: "Wartung", 
-            title: "Ölwechsel + Ölfilter + Luftfilter", 
-            date: "2026-05-15", 
-            mileage: 182000, 
-            cost: 95.00, 
-            performer: "Eigenleistung", 
-            notes: "8.0L Fuchs Titan GT1 5W-40 eingefüllt.\nÖlfilter Mann HU718/1k verbaut.\nAblassschraube mit 30 Nm angezogen.",
-            images: [] 
+          {
+            id: "s1",
+            category: "Wartung",
+            title: "Ölwechsel + Ölfilter",
+            date: "2026-05-15",
+            mileage: 82000,
+            cost: 89.00,
+            performer: "Eigenleistung",
+            notes: "Beispiel-Eintrag – kann gelöscht werden.",
+            images: []
           }
         ]
       }
@@ -281,8 +270,7 @@ function loadDefaultData() {
     customerVehicles: [],
     businessInfo: getDefaultBusinessInfo(),
     lastBackupDate: null,
-    backgroundStyle: "concrete",
-    accentColor: "amber"
+    design: "werkstatt"
   };
   saveData({ keepChangeDate: true });
 }
@@ -309,17 +297,45 @@ function getActiveCustomerVehicle() {
 }
 
 /* --- THEME TOGGLE --- */
-function toggleTheme() {
-  const newTheme = appData.theme === 'light' ? 'dark' : 'light';
-  setTheme(newTheme);
+/* --- DESIGN: genau zwei fertige Designs statt frei kombinierbarer Optionen ---
+   Werkstatt = dunkel, Cockpit-Instrumente, Amber, Raster-Hintergrund
+   Showroom  = hell, Standard-Kacheln, Petrol, schlichter Hintergrund
+   Die Einzelwerte (theme, uiStyle, accentColor, backgroundStyle) werden aus
+   dem Design abgeleitet und mitgespeichert, weil andere Stellen sie lesen. */
+const DESIGN_PRESETS = {
+  werkstatt: { theme: 'dark', uiStyle: 'cockpit', accentColor: 'amber', backgroundStyle: 'grid' },
+  showroom: { theme: 'light', uiStyle: 'standard', accentColor: 'teal', backgroundStyle: 'plain' }
+};
+
+function getDesign() {
+  if (DESIGN_PRESETS[appData.design]) return appData.design;
+  // Ältere Daten/Backups ohne "design": anhand des Farbschemas zuordnen
+  return appData.theme === 'light' ? 'showroom' : 'werkstatt';
 }
 
-function setTheme(theme) {
-  appData.theme = theme;
-  saveData();
-  applyTheme(theme);
+function applyDesign(design) {
+  const preset = DESIGN_PRESETS[design] || DESIGN_PRESETS.werkstatt;
+  Object.assign(appData, preset, { design });
+  applyTheme(preset.theme);
+  applyBackgroundStyle(preset.backgroundStyle);
+  applyAccentColor(preset.accentColor);
+  applyUiStyle(preset.uiStyle);
+  document.querySelectorAll('[data-design-btn]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-design-btn') === design);
+  });
 }
-window.setTheme = setTheme;
+
+function setDesign(design) {
+  applyDesign(design);
+  saveData({ keepChangeDate: true });
+}
+window.setDesign = setDesign;
+
+// Mond-Knopf oben: zwischen den beiden Designs wechseln
+function toggleTheme() {
+  setDesign(getDesign() === 'showroom' ? 'werkstatt' : 'showroom');
+}
+
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
@@ -331,40 +347,19 @@ function applyTheme(theme) {
   const iconSelection = document.getElementById('themeToggleIconSelection');
   if (iconSelection) iconSelection.innerText = iconText;
 
-  const lightBtn = document.getElementById('themeSwitchLight');
-  const darkBtn = document.getElementById('themeSwitchDark');
-  if (lightBtn && darkBtn) {
-    lightBtn.classList.toggle('active', theme === 'light');
-    darkBtn.classList.toggle('active', theme !== 'light');
-  }
-
   const v = getActiveVehicle();
   if (v) renderCharts(v);
 }
 
 // Wendet den gewählten App-Hintergrund an (siehe Einstellungen > Darstellung)
 function applyBackgroundStyle(style) {
-  document.body.setAttribute('data-bg-style', style || 'concrete');
-
-  document.querySelectorAll('.bg-style-option').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-style') === (style || 'concrete'));
-  });
+  document.body.setAttribute('data-bg-style', style || 'grid');
 }
 
-function setBackgroundStyle(style) {
-  appData.backgroundStyle = style;
-  saveData();
-  applyBackgroundStyle(style);
-}
-window.setBackgroundStyle = setBackgroundStyle;
 
 // Wendet die gewählte Akzentfarbe an (siehe Einstellungen > Darstellung)
 function applyAccentColor(color) {
   document.documentElement.setAttribute('data-accent', color || 'amber');
-
-  document.querySelectorAll('.accent-color-option').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-accent') === (color || 'amber'));
-  });
 
   // Verbrauchsverlauf-Chart nutzt die Akzentfarbe live (siehe renderCharts) -
   // daher hier ebenfalls neu zeichnen, sonst zeigt er erst nach einem Reload
@@ -376,28 +371,9 @@ function applyAccentColor(color) {
 // Wendet den gewählten Design-Stil an (Standard oder Cockpit-Design)
 function applyUiStyle(style) {
   document.documentElement.setAttribute('data-ui-style', style || 'standard');
-
-  const standardBtn = document.getElementById('uiStyleStandard');
-  const cockpitBtn = document.getElementById('uiStyleCockpit');
-  if (standardBtn && cockpitBtn) {
-    standardBtn.classList.toggle('active', (style || 'standard') === 'standard');
-    cockpitBtn.classList.toggle('active', style === 'cockpit');
-  }
 }
 
-function setUiStyle(style) {
-  appData.uiStyle = style;
-  saveData();
-  applyUiStyle(style);
-}
-window.setUiStyle = setUiStyle;
 
-function setAccentColor(color) {
-  appData.accentColor = color;
-  saveData();
-  applyAccentColor(color);
-}
-window.setAccentColor = setAccentColor;
 
 // Blendet die Kachel "Kundenfahrzeuge" auf dem Startbildschirm ein/aus,
 // je nachdem ob die Funktion in den Einstellungen aktiviert ist

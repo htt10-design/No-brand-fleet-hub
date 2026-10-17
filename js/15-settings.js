@@ -9,7 +9,7 @@ function buildBackupFile(extension) {
   const payload = { ...appData, lastBackupDate: now.toISOString(), exportedAt: now.toISOString() };
   const json = JSON.stringify(payload, null, 2);
   const type = extension === 'txt' ? 'text/plain' : 'application/json';
-  return new File([json], `fleethub_backup_${stamp}.${extension}`, { type });
+  return new File([json], `serviceheft_backup_${stamp}.${extension}`, { type });
 }
 
 // Welche Dateiendung lässt das Teilen-Menü zu? (Test mit Mini-Datei, damit nicht
@@ -59,7 +59,7 @@ async function shareBackup() {
   }
   const file = buildBackupFile(ext);
   try {
-    await navigator.share({ files: [file], title: 'Fleet Hub Backup' });
+    await navigator.share({ files: [file], title: 'Serviceheft+ Backup' });
     markBackupDone();
   } catch (err) {
     // Abbruch im Teilen-Menü ist kein Fehler - dann gilt das Backup nur nicht als erledigt
@@ -228,10 +228,7 @@ function openSettingsModal() {
   if (reminderSelect) reminderSelect.value = String(getBackupReminderDays());
   const shareBtn = document.getElementById('backupShareBtn');
   if (shareBtn) shareBtn.style.display = canShareBackup() ? '' : 'none';
-  applyTheme(appData.theme || 'dark');
-  applyBackgroundStyle(appData.backgroundStyle || 'concrete');
-  applyAccentColor(appData.accentColor || 'amber');
-  applyUiStyle(appData.uiStyle || 'standard');
+  applyDesign(getDesign());
   applyCustomerVehiclesVisibility();
   applyVehicleCategoryToggleVisibility();
   applyFuelDealSettingsUI();

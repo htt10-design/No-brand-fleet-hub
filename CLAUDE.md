@@ -1,4 +1,4 @@
-# Fleet Hub – Fahrzeug-Management (markenneutrale Version)
+# Serviceheft+ – Fahrzeug-Management (markenneutrale Version)
 
 Offline-fähige Single-Page-PWA zur Verwaltung von Autos, Anhängern und Booten
 für private Schrauber (plus optionaler Bereich "Kundenfahrzeuge" mit Rechnungen).
@@ -55,6 +55,10 @@ tools/smoke-test.js   Browser-Smoke-Test (Playwright)
 - Datenmodell abwärtskompatibel halten (fehlende Felder tolerieren) – es gibt keine Migrationen,
   und Backups (JSON-Export) älterer Versionen müssen importierbar bleiben.
 - **Bei jeder Änderung an index.html / js / style.css `CACHE_VERSION` in `sw.js` hochzählen.**
+- Genau zwei Designs (`DESIGN_PRESETS` in 01-core): **Werkstatt** (dunkel, Cockpit, Amber, Raster) und
+  **Showroom** (hell, Standard, Petrol, schlicht). Keine freie Farb-/Hintergrundwahl.
+- Interne Speichernamen (`fleethub_db`, `fleethub_data`, Cache `fleethub-vN`) bewusst nicht umbenennen –
+  sonst sind vorhandene Installationen leer.
 
 ## Prüfen
 

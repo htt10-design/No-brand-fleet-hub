@@ -28,32 +28,6 @@
   --bg-grid-line: rgba(56, 189, 248, 0.04);
   --bg-grid-line-major: rgba(56, 189, 248, 0.09);
 
-  /* Werkstatt-Beton (aktuelles Standarddesign) */
-  --concrete-bg: #1e252d;
-  --concrete-glow: rgba(255, 255, 255, 0.12);
-  --concrete-line: rgba(255, 255, 255, 0.035);
-  --concrete-noise-a: rgba(255, 255, 255, 0.08);
-  --concrete-noise-b: rgba(255, 255, 255, 0.05);
-
-  /* Werkstatt-Licht (Vignette + Lampenschein) */
-  --bg-lamp-glow: rgba(243, 156, 18, 0.07);
-  --bg-vignette-center: #161d24;
-  --bg-vignette-edge: #05070a;
-
-  /* Mercedes Modern (gebürstetes Metall, kühles Anthrazit) */
-  --merc-modern-a: #1c1f22;
-  --merc-modern-b: #2e3236;
-  --merc-modern-sheen: rgba(255, 255, 255, 0.08);
-  --merc-modern-mesh: rgba(255, 255, 255, 0.035);
-  --merc-modern-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.35%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
-
-  /* Mercedes Klassik (warmes Leder-/Pepita-Anmuten) */
-  --merc-classic-a: #2a1f18;
-  --merc-classic-b: #1c140f;
-  --merc-classic-line: rgba(214, 178, 128, 0.05);
-  --merc-classic-line-2: rgba(214, 178, 128, 0.03);
-  --merc-classic-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23d2b48c%27%20stroke-opacity%3D%270.28%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
-  
   /* Radien & Fonts */
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -64,10 +38,10 @@
 }
 
 [data-theme="light"] {
-  /* Light Mode (Werkstatt-Silber / Technisches Hellgrau) */
-  --bg-body: #e5e9f0;
-  --bg-card: rgba(255, 255, 255, 0.78);
-  --bg-sidebar: rgba(237, 241, 245, 0.78);
+  /* Showroom (helles Design): deckendes Weiß auf ruhigem Hellgrau */
+  --bg-body: #f3f5f8;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
   --border-color: #cbd5e1;
   --border-highlight: #94a3b8;
   
@@ -77,7 +51,7 @@
   --accent-primary: #d97706;
   --accent-primary-hover: #b45309;
 
-  --card-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(248, 250, 252, 0.78) 100%);
+  --card-gradient: #ffffff;
   --table-header-bg: #edf1f5;
   --table-hover-bg: rgba(217, 119, 6, 0.06);
 
@@ -85,37 +59,11 @@
   --bg-grid-line: rgba(30, 58, 138, 0.04);
   --bg-grid-line-major: rgba(30, 58, 138, 0.08);
 
-  /* Werkstatt-Beton (Hell-Modus) */
-  --concrete-bg: #d7dce2;
-  --concrete-glow: rgba(255, 255, 255, 0.55);
-  --concrete-line: rgba(30, 41, 59, 0.05);
-  --concrete-noise-a: rgba(30, 41, 59, 0.07);
-  --concrete-noise-b: rgba(30, 41, 59, 0.045);
-
-  /* Werkstatt-Licht (Hell-Modus) */
-  --bg-lamp-glow: rgba(217, 119, 6, 0.05);
-  --bg-vignette-center: #ffffff;
-  --bg-vignette-edge: #ccd3da;
-
-  /* Mercedes Modern (Hell-Modus: gebürstetes Silber) */
-  --merc-modern-a: #e4e7ea;
-  --merc-modern-b: #cfd4d9;
-  --merc-modern-sheen: rgba(255, 255, 255, 0.6);
-  --merc-modern-mesh: rgba(30, 41, 59, 0.035);
-  --merc-modern-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%231e293b%27%20stroke-opacity%3D%270.18%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
-
-  /* Mercedes Klassik (Hell-Modus: warmes Creme/Beige) */
-  --merc-classic-a: #f1e6d2;
-  --merc-classic-b: #e7d8ba;
-  --merc-classic-line: rgba(101, 67, 33, 0.05);
-  --merc-classic-line-2: rgba(101, 67, 33, 0.03);
-  --merc-classic-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%236b4a2b%27%20stroke-opacity%3D%270.15%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* ==========================================================================
-   AKZENTFARBE: AUSWÄHLBAR (Einstellungen > Darstellung)
-   "Amber" ist die Standardfarbe und braucht keine eigene Regel (siehe oben);
-   die anderen Farben überschreiben --accent-primary in beiden Themes gleich.
+   AKZENTFARBE je Design: Werkstatt = Amber (Standard, siehe oben),
+   Showroom = Petrol ("teal"). Weitere Farben bleiben als Reserve erhalten.
    ========================================================================== */
 [data-accent="blue"] {
   --accent-primary: #3b82f6;
@@ -164,38 +112,53 @@ body {
   line-height: 1.4;
 }
 
-/* ==========================================================================
-   APP-HINTERGRUND: AUSWÄHLBARE STILE (Einstellungen > Darstellung)
-   Jede Regel gilt sowohl für den echten Seitenhintergrund (body[data-bg-style])
-   als auch für die kleine Vorschau-Kachel in den Einstellungen (.bg-style-swatch)
-   ========================================================================== */
-
-/* 1. Werkstatt-Beton (aktuelles Standarddesign) */
-body[data-bg-style="concrete"],
-.bg-style-swatch[data-style="concrete"] {
-  background-color: var(--concrete-bg);
-  background-image:
-    radial-gradient(circle at 50% -10%, var(--concrete-glow) 0%, transparent 60%),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 18px,
-      var(--concrete-line) 18px,
-      var(--concrete-line) 22px,
-      transparent 22px,
-      transparent 28px,
-      var(--concrete-line) 28px,
-      var(--concrete-line) 32px
-    ),
-    radial-gradient(var(--concrete-noise-a) 1px, transparent 1px),
-    radial-gradient(var(--concrete-noise-b) 1px, transparent 1px);
-  background-size: 100% 100%, 160px 160px, 12px 12px, 24px 24px;
-  background-position: 0 0, 0 0, 0 0, 12px 12px;
+/* Showroom: Petrol-Akzent etwas kräftiger, damit er auf Weiß gut lesbar bleibt */
+[data-theme="light"][data-accent="teal"] {
+  --accent-primary: #0d9488;
+  --accent-primary-hover: #0f766e;
+  --table-hover-bg: rgba(13, 148, 136, 0.06);
 }
 
-/* 2. Werkstatt-Raster (Blueprint/Konstruktionsraster) */
-body[data-bg-style="grid"],
-.bg-style-swatch[data-style="grid"] {
+/* Showroom: Karten mit leichtem Schatten statt Glas-Effekt */
+[data-theme="light"] .card,
+[data-theme="light"] .kpi-card,
+[data-theme="light"] .selection-card,
+[data-theme="light"] .modal {
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+[data-theme="light"] .modal-overlay { background-color: rgba(15, 23, 42, 0.45); }
+
+/* Einstellungen > Darstellung: Auswahl zwischen den zwei Designs */
+.design-choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.design-choice {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem;
+  padding: 0.6rem; border: 2px solid var(--border-color); border-radius: var(--radius-md);
+  background: var(--bg-body); color: var(--text-main); font-family: inherit; text-align: left; cursor: pointer;
+}
+.design-choice.active { border-color: var(--accent-primary); }
+.design-choice-swatch {
+  width: 100%; height: 54px; border-radius: var(--radius-sm); display: flex; flex-direction: column;
+  justify-content: center; gap: 5px; padding: 0 8px; box-sizing: border-box;
+}
+.design-choice-swatch i { display: block; height: 7px; border-radius: 3px; }
+.design-choice-werkstatt { background: #0a0d12; border: 1px solid #212c38; }
+.design-choice-werkstatt i { background: #1d2530; }
+.design-choice-werkstatt i:first-child { background: #f39c12; width: 45%; }
+.design-choice-showroom { background: #f3f5f8; border: 1px solid #d5dbe3; }
+.design-choice-showroom i { background: #ffffff; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08); }
+.design-choice-showroom i:first-child { background: #0d9488; width: 45%; }
+.design-choice-name { font-weight: 700; font-size: 0.9rem; }
+.design-choice-desc { font-size: 0.72rem; color: var(--text-muted); }
+
+/* Marke: "+" im Namen in der Akzentfarbe */
+.brand-plus { color: var(--accent-primary); }
+
+/* ==========================================================================
+   APP-HINTERGRUND je Design (siehe DESIGN_PRESETS in js/01-core.js)
+   ========================================================================== */
+
+/* Werkstatt: Blueprint-/Konstruktionsraster */
+body[data-bg-style="grid"] {
   background-color: var(--bg-body);
   background-image:
     linear-gradient(var(--bg-grid-line) 1px, transparent 1px),
@@ -205,40 +168,11 @@ body[data-bg-style="grid"],
   background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
 }
 
-/* 3. Werkstatt-Licht (Vignette + sanfter Lampenschein) */
-body[data-bg-style="vignette"],
-.bg-style-swatch[data-style="vignette"] {
+/* Showroom: ruhige, schlichte Fläche */
+body[data-bg-style="plain"] {
   background-color: var(--bg-body);
-  background-image:
-    radial-gradient(1100px circle at 50% -10%, var(--bg-lamp-glow), transparent 55%),
-    radial-gradient(140% 140% at 50% 15%, var(--bg-vignette-center) 0%, var(--bg-body) 55%, var(--bg-vignette-edge) 100%);
+  background-image: none;
 }
-
-/* 4. Mercedes Modern (gebürstetes Metall mit Lichtreflex + dezenten Sternen) */
-body[data-bg-style="mercedes-modern"],
-.bg-style-swatch[data-style="mercedes-modern"] {
-  background-color: var(--bg-body);
-  background-image:
-    
-    linear-gradient(120deg, transparent 35%, var(--merc-modern-sheen) 48%, var(--merc-modern-sheen) 52%, transparent 65%),
-    repeating-linear-gradient(60deg, var(--merc-modern-mesh) 0px, var(--merc-modern-mesh) 1px, transparent 1px, transparent 22px),
-    repeating-linear-gradient(-60deg, var(--merc-modern-mesh) 0px, var(--merc-modern-mesh) 1px, transparent 1px, transparent 22px),
-    linear-gradient(135deg, var(--merc-modern-a), var(--merc-modern-b), var(--merc-modern-a));
-  background-size: 70px 70px, auto, auto, auto, auto;
-}
-
-/* 5. Mercedes Klassik (warmes Leder-/Pepita-Anmuten + dezenten Sternen) */
-body[data-bg-style="mercedes-classic"],
-.bg-style-swatch[data-style="mercedes-classic"] {
-  background-color: var(--bg-body);
-  background-image:
-        repeating-linear-gradient(45deg, var(--merc-classic-line) 0px, var(--merc-classic-line) 1px, transparent 1px, transparent 16px),
-    repeating-linear-gradient(-45deg, var(--merc-classic-line-2) 0px, var(--merc-classic-line-2) 1px, transparent 1px, transparent 16px),
-    linear-gradient(160deg, var(--merc-classic-a), var(--merc-classic-b));
-  background-size: 70px 70px, auto, auto, auto;
-}
-
-
 
 .hidden {
   display: none !important;
@@ -2974,92 +2908,6 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 .theme-switch-btn.active {
   background-color: var(--accent-primary);
   color: #111827;
-  font-weight: 600;
-}
-
-/* Darstellung: Hintergrundstil-Auswahl mit Vorschau-Kacheln */
-.bg-style-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 0.6rem;
-}
-
-.bg-style-option {
-  background: none;
-  border: 2px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 0.3rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: inherit;
-}
-
-.bg-style-swatch {
-  display: block;
-  width: 100%;
-  height: 52px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
-}
-
-.bg-style-name {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.2;
-}
-
-.bg-style-option.active {
-  border-color: var(--accent-primary);
-}
-
-.bg-style-option.active .bg-style-name {
-  color: var(--text-main);
-  font-weight: 600;
-}
-
-/* Darstellung: Akzentfarben-Auswahl */
-.accent-color-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.accent-color-option {
-  background: none;
-  border: none;
-  padding: 3px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  font-family: inherit;
-}
-
-.accent-color-swatch {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: block;
-  border: 2px solid transparent;
-}
-
-.accent-color-option.active .accent-color-swatch {
-  border-color: var(--text-main);
-  box-shadow: 0 0 0 2px var(--bg-card);
-}
-
-.accent-color-name {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-}
-
-.accent-color-option.active .accent-color-name {
-  color: var(--text-main);
   font-weight: 600;
 }
 

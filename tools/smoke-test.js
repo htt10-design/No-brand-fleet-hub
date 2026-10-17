@@ -1,4 +1,4 @@
-// Smoke-Test für Fleet Hub: startet einen lokalen Server, öffnet die App in
+// Smoke-Test für Serviceheft+: startet einen lokalen Server, öffnet die App in
 // Chromium (Handy- und Desktop-Größe), klickt die Hauptbereiche durch und
 // meldet alle JS-Fehler. Screenshots landen im angegebenen Ordner.
 //

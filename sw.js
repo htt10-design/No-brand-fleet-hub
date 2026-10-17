@@ -1,11 +1,11 @@
-// Service Worker für Fleet Hub (Fahrzeug-Management)
+// Service Worker für Serviceheft+ (Fahrzeug-Management)
 //
 // WICHTIG: Diese Versionsnummer bei jeder inhaltlichen Änderung an
 // index.html / js/*.js / style.css hochzählen (z.B. v2, v3, ...).
 // Nur so merkt der Browser, dass es eine neue Version gibt und lädt sie
 // nach - sonst bekommen Nutzer u.U. dauerhaft die alte, zwischengespeicherte
 // Version ausgeliefert.
-const CACHE_VERSION = 'fleethub-v1';
+const CACHE_VERSION = 'fleethub-v2';
 
 // Alle Dateien, die die App offline-fähig machen ("App-Shell")
 const APP_SHELL_FILES = [
