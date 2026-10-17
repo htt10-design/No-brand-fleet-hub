@@ -1,7 +1,7 @@
 # Serviceheft+ – Fahrzeug-Management (markenneutrale Version)
 
 Offline-fähige Single-Page-PWA zur Verwaltung von Autos, Anhängern und Booten
-für private Schrauber. Startseite ist direkt „Meine Garage“ (kein Kundenbereich in dieser Version).
+für private Schrauber. Startseite = Bereichsauswahl mit einer Kachel „Meine Garage“ (kein Kundenbereich in dieser Version).
 Kein Server, kein Build-Schritt, keine Abhängigkeiten außer Chart.js (lokal in `vendor/`).
 UI-Sprache und Code-Kommentare: Deutsch.
 
@@ -23,7 +23,7 @@ tools/smoke-test.js   Browser-Smoke-Test (Playwright)
 |---|---|
 | 01-core | `appData`-State, IndexedDB-Persistenz (`saveData`), `initApp`, Theme/Akzent, Bereichsauswahl, Motor-Helfer |
 | 02-helpers | `escapeHtml`, KM-Formatierung, TÜV-Plakette, Wartungs-Erinnerungen, Fahrzeugkategorien |
-| 03-garage | Fahrzeugkacheln, Long-Press-Kontextmenü, Archiv, Startseite/Garage (`showGarageSelection`), Tab-Navigation (`showTab`), Stammdaten-Felder je Kategorie |
+| 03-garage | Fahrzeugkacheln, Long-Press-Kontextmenü, Archiv, Startseite/Garage (`showStartPage`, `openGarage`, `showGarageSelection`), Tab-Navigation (`showTab`), Stammdaten-Felder je Kategorie |
 | 04-boats | Bootstyp, Motorenverwaltung, Zubehör-Boote |
 | 05-tires | Reifen & Felgen |
 | 06-tuev | TÜV/HU-Wizard |

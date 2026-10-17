@@ -19,8 +19,8 @@
 </head>
 <body>
 
-<!-- GARAGEN-TOR: fährt beim App-Start hoch und gibt den Blick in die Garage frei -->
-<div id="garage-door-overlay" class="garage-door-overlay active">
+<!-- GARAGEN-TOR: fährt beim Öffnen von "Meine Garage" hoch -->
+<div id="garage-door-overlay" class="garage-door-overlay">
   <div class="garage-door-panel">
     <div class="slat"></div>
     <div class="slat"></div>
@@ -37,7 +37,7 @@
 
 
 
-<!-- STARTSEITE: MEINE GARAGE (Fahrzeugauswahl) -->
+<!-- STARTSEITE: Bereichsauswahl (eine Kachel) -> Meine Garage (Fahrzeugauswahl) -->
 <div id="selection-screen" class="selection-container">
   <div class="header-controls-floating">
     <button class="btn-theme-toggle" id="themeToggleBtnSelection" onclick="toggleTheme()" title="Design wechseln (Werkstatt / Showroom)">
@@ -53,15 +53,38 @@
       <span class="app-logo-img logo-for-light"></span>
       <span>Serviceheft<span class="brand-plus">+</span></span>
     </div>
-    <h2 id="selection-title">Meine Garage</h2>
-    <p class="garage-subtitle" id="garageSubtitle"></p>
+    <h2 id="selection-title">Bereichsauswahl</h2>
+    <p class="garage-subtitle" id="garageSubtitle" style="display: none;"></p>
   </header>
 
   <!-- Backup-Erinnerung (nur sichtbar, wenn ein Backup fällig ist) -->
   <div class="backup-reminder" id="backupReminder" style="display: none;"></div>
 
   <!-- Fahrzeugauswahl -->
-  <div id="garage-vehicle-selection" style="width: 100%;">
+  <!-- Bereichsauswahl: eine große Kachel -->
+  <div class="kachel-grid start-area-grid" id="area-selection-grid">
+    <div class="selection-card start-garage-card" id="card-eigene" onclick="openGarage()">
+      <div class="start-garage-icon-wrap">
+        <svg class="start-garage-icon" viewBox="0 0 100 100" aria-hidden="true">
+          <path class="sg-roof" d="M12 44 L50 14 L88 44"/>
+          <path class="sg-body" d="M22 44 V86 H78 V44"/>
+          <line class="sg-slat" x1="22" y1="52" x2="78" y2="52"/>
+          <polygon class="sg-body" points="50,56 62.1,63 62.1,77 50,84 37.9,77 37.9,63"/>
+          <circle class="sg-hole" cx="50" cy="70" r="5"/>
+        </svg>
+      </div>
+      <h3>Meine Garage</h3>
+      <p>Fahrzeugkartei, Wartung, Tankungen &amp; Kosten</p>
+      <span class="start-garage-count" id="startGarageCount"></span>
+    </div>
+  </div>
+
+  <div id="garage-vehicle-selection" style="display: none; width: 100%;">
+    <div class="garage-toolbar">
+      <button type="button" class="btn-back-clean" onclick="showStartPage()" title="Zurück zur Startseite" aria-label="Zurück">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+      </button>
+    </div>
     <div class="category-filter-row" id="categoryFilterRow">
       <button type="button" class="category-filter-chip active" data-category="all" onclick="setVehicleCategoryFilter('all')">
         <span>Alle</span>

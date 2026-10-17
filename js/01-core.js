@@ -80,12 +80,6 @@ function fhIdbDelete(key) {
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
 
-  // Start-Animation: Das Rolltor (mit Logo) ist beim Laden bereits geschlossen
-  // und fährt hoch - dahinter wartet direkt "Meine Garage"
-  setTimeout(() => {
-    const door = document.getElementById('garage-door-overlay');
-    if (door) door.classList.remove('active');
-  }, 2050);
 
   // Service Worker registrieren (App-Shell-Caching, Offline-Fähigkeit) und
   // den Browser bitten, den Speicher der App als "wichtig" einzustufen,
@@ -195,7 +189,7 @@ async function initApp() {
   showTab('dashboard', defaultNavBtn);
 
   renderBackupReminder();
-  showGarageSelection();
+  showStartPage();
 }
 
 function loadDefaultData() {
@@ -348,11 +342,31 @@ let currentMode = 'eigene'; // Nur noch eigene Fahrzeuge (kein Kundenbereich)
 
 
 // Bereichsauswahl steuern
-// Startseite "Meine Garage": Fahrzeugkacheln anzeigen (ohne Bereichsauswahl)
-function showGarageSelection() {
-  currentMode = 'eigene';
+// Startseite (Bereichsauswahl) und "Meine Garage" teilen sich denselben
+// Bildschirm - es wird nur umgeschaltet, was sichtbar ist
+function setSelectionView(view) {
+  const isGarage = view === 'garage';
   document.getElementById('app-wrapper').classList.add('hidden');
   document.getElementById('selection-screen').classList.remove('hidden');
+  document.getElementById('area-selection-grid').style.display = isGarage ? 'none' : '';
+  document.getElementById('garage-vehicle-selection').style.display = isGarage ? 'block' : 'none';
+  document.getElementById('selection-title').innerText = isGarage ? 'Meine Garage' : 'Bereichsauswahl';
+  document.getElementById('garageSubtitle').style.display = isGarage ? '' : 'none';
+}
+
+// Startseite mit der Kachel "Meine Garage"
+function showStartPage() {
+  setSelectionView('start');
+  const count = (appData.vehicles || []).filter(v => !v.archived).length;
+  const countEl = document.getElementById('startGarageCount');
+  if (countEl) countEl.textContent = count === 0 ? 'Noch kein Fahrzeug' : `${count} ${count === 1 ? 'Fahrzeug' : 'Fahrzeuge'}`;
+}
+window.showStartPage = showStartPage;
+
+// "Meine Garage": Fahrzeugkacheln anzeigen
+function showGarageSelection() {
+  currentMode = 'eigene';
+  setSelectionView('garage');
   try {
     renderGarageVehicleTiles();
   } catch (err) {
@@ -360,6 +374,20 @@ function showGarageSelection() {
   }
 }
 window.showGarageSelection = showGarageSelection;
+
+// Kachel auf der Startseite: Rolltor fährt hoch, dahinter die Garage
+function openGarage() {
+  const overlay = document.getElementById('garage-door-overlay');
+  if (!overlay) {
+    showGarageSelection();
+    return;
+  }
+  overlay.classList.add('active');
+  // Ansicht genau zur Hälfte der Animation umschalten, Tor danach ausblenden
+  setTimeout(showGarageSelection, 1000);
+  setTimeout(() => overlay.classList.remove('active'), 2050);
+}
+window.openGarage = openGarage;
 
 
 // Ermittelt den aktuellen Kilometer-/Betriebsstundenstand aus Tank- & Wartungseinträgen

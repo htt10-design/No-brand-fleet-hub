@@ -42,8 +42,8 @@ const server = http.createServer((req, res) => {
     await page.waitForTimeout(1800);
     await page.screenshot({ path: path.join(OUT, `${label}-01-start.png`) });
 
-    // Startseite ist direkt "Meine Garage" (Rolltor fährt beim Start hoch)
-    await page.waitForTimeout(1500);
+    await page.evaluate(() => openGarage());
+    await page.waitForTimeout(2500);
     await page.screenshot({ path: path.join(OUT, `${label}-02-garage.png`) });
 
     await page.evaluate(() => chooseGarageVehicle(appData.vehicles[0].id));
