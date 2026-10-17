@@ -1,0 +1,3636 @@
+/* ==========================================================================
+   TECHNICAL / AUTOMOTIVE SCHRAUBER-THEME (FLEET HUB)
+   ========================================================================== */
+
+:root {
+  /* Dark Mode (Motorsport-Graphit / High-Tech Blue) */
+  --bg-body: #0a0d12;
+  --bg-card: rgba(19, 24, 32, 0.72);
+  --bg-sidebar: rgba(14, 18, 24, 0.72);
+  --border-color: #212c38;
+  --border-highlight: #344659;
+  
+  --text-main: #e6edf3;
+  --text-muted: #8b98a5;
+  
+  /* Akzentfarben (Werkstatt-Vibe) */
+  --accent-primary: #f39c12;         /* Amber / Tacho-Gelborange */
+  --accent-primary-hover: #d68910;
+  --accent-success: #2ecc71;         /* Indikator Grün */
+  --accent-warning: #e67e22;         /* Service-Orange */
+  --accent-danger: #e74c3c;          /* Warn-Rot */
+
+  --card-gradient: linear-gradient(180deg, rgba(22, 30, 39, 0.72) 0%, rgba(15, 20, 26, 0.72) 100%);
+  --table-header-bg: #0e1218;
+  --table-hover-bg: rgba(243, 156, 18, 0.05);
+
+  /* Blueprint- & Werkstatt-Raster */
+  --bg-grid-line: rgba(56, 189, 248, 0.04);
+  --bg-grid-line-major: rgba(56, 189, 248, 0.09);
+
+  /* Werkstatt-Beton (aktuelles Standarddesign) */
+  --concrete-bg: #1e252d;
+  --concrete-glow: rgba(255, 255, 255, 0.12);
+  --concrete-line: rgba(255, 255, 255, 0.035);
+  --concrete-noise-a: rgba(255, 255, 255, 0.08);
+  --concrete-noise-b: rgba(255, 255, 255, 0.05);
+
+  /* Werkstatt-Licht (Vignette + Lampenschein) */
+  --bg-lamp-glow: rgba(243, 156, 18, 0.07);
+  --bg-vignette-center: #161d24;
+  --bg-vignette-edge: #05070a;
+
+  /* Mercedes Modern (gebürstetes Metall, kühles Anthrazit) */
+  --merc-modern-a: #1c1f22;
+  --merc-modern-b: #2e3236;
+  --merc-modern-sheen: rgba(255, 255, 255, 0.08);
+  --merc-modern-mesh: rgba(255, 255, 255, 0.035);
+  --merc-modern-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.35%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Mercedes Klassik (warmes Leder-/Pepita-Anmuten) */
+  --merc-classic-a: #2a1f18;
+  --merc-classic-b: #1c140f;
+  --merc-classic-line: rgba(214, 178, 128, 0.05);
+  --merc-classic-line-2: rgba(214, 178, 128, 0.03);
+  --merc-classic-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23d2b48c%27%20stroke-opacity%3D%270.28%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
+  
+  /* Radien & Fonts */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+[data-theme="light"] {
+  /* Light Mode (Werkstatt-Silber / Technisches Hellgrau) */
+  --bg-body: #e5e9f0;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --bg-sidebar: rgba(237, 241, 245, 0.78);
+  --border-color: #cbd5e1;
+  --border-highlight: #94a3b8;
+  
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  
+  --accent-primary: #d97706;
+  --accent-primary-hover: #b45309;
+
+  --card-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(248, 250, 252, 0.78) 100%);
+  --table-header-bg: #edf1f5;
+  --table-hover-bg: rgba(217, 119, 6, 0.06);
+
+  /* Blueprint-Raster für Hell-Modus */
+  --bg-grid-line: rgba(30, 58, 138, 0.04);
+  --bg-grid-line-major: rgba(30, 58, 138, 0.08);
+
+  /* Werkstatt-Beton (Hell-Modus) */
+  --concrete-bg: #d7dce2;
+  --concrete-glow: rgba(255, 255, 255, 0.55);
+  --concrete-line: rgba(30, 41, 59, 0.05);
+  --concrete-noise-a: rgba(30, 41, 59, 0.07);
+  --concrete-noise-b: rgba(30, 41, 59, 0.045);
+
+  /* Werkstatt-Licht (Hell-Modus) */
+  --bg-lamp-glow: rgba(217, 119, 6, 0.05);
+  --bg-vignette-center: #ffffff;
+  --bg-vignette-edge: #ccd3da;
+
+  /* Mercedes Modern (Hell-Modus: gebürstetes Silber) */
+  --merc-modern-a: #e4e7ea;
+  --merc-modern-b: #cfd4d9;
+  --merc-modern-sheen: rgba(255, 255, 255, 0.6);
+  --merc-modern-mesh: rgba(30, 41, 59, 0.035);
+  --merc-modern-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%231e293b%27%20stroke-opacity%3D%270.18%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Mercedes Klassik (Hell-Modus: warmes Creme/Beige) */
+  --merc-classic-a: #f1e6d2;
+  --merc-classic-b: #e7d8ba;
+  --merc-classic-line: rgba(101, 67, 33, 0.05);
+  --merc-classic-line-2: rgba(101, 67, 33, 0.03);
+  --merc-classic-star: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%236b4a2b%27%20stroke-opacity%3D%270.15%27%20stroke-width%3D%271.3%27%20stroke-linecap%3D%27round%27%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%273.2%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%274.7%27%20y2%3D%2716.4%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2719.3%27%20y2%3D%2716.4%27/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   AKZENTFARBE: AUSWÄHLBAR (Einstellungen > Darstellung)
+   "Amber" ist die Standardfarbe und braucht keine eigene Regel (siehe oben);
+   die anderen Farben überschreiben --accent-primary in beiden Themes gleich.
+   ========================================================================== */
+[data-accent="blue"] {
+  --accent-primary: #3b82f6;
+  --accent-primary-hover: #2563eb;
+}
+
+[data-accent="green"] {
+  --accent-primary: #22c55e;
+  --accent-primary-hover: #16a34a;
+}
+
+[data-accent="red"] {
+  --accent-primary: #ef4444;
+  --accent-primary-hover: #dc2626;
+}
+
+[data-accent="purple"] {
+  --accent-primary: #a855f7;
+  --accent-primary-hover: #9333ea;
+}
+
+[data-accent="teal"] {
+  --accent-primary: #14b8a6;
+  --accent-primary-hover: #0d9488;
+}
+
+/* Base Setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.15s, color 0.15s;
+  touch-action: manipulation;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   APP-HINTERGRUND: AUSWÄHLBARE STILE (Einstellungen > Darstellung)
+   Jede Regel gilt sowohl für den echten Seitenhintergrund (body[data-bg-style])
+   als auch für die kleine Vorschau-Kachel in den Einstellungen (.bg-style-swatch)
+   ========================================================================== */
+
+/* 1. Werkstatt-Beton (aktuelles Standarddesign) */
+body[data-bg-style="concrete"],
+.bg-style-swatch[data-style="concrete"] {
+  background-color: var(--concrete-bg);
+  background-image:
+    radial-gradient(circle at 50% -10%, var(--concrete-glow) 0%, transparent 60%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 18px,
+      var(--concrete-line) 18px,
+      var(--concrete-line) 22px,
+      transparent 22px,
+      transparent 28px,
+      var(--concrete-line) 28px,
+      var(--concrete-line) 32px
+    ),
+    radial-gradient(var(--concrete-noise-a) 1px, transparent 1px),
+    radial-gradient(var(--concrete-noise-b) 1px, transparent 1px);
+  background-size: 100% 100%, 160px 160px, 12px 12px, 24px 24px;
+  background-position: 0 0, 0 0, 0 0, 12px 12px;
+}
+
+/* 2. Werkstatt-Raster (Blueprint/Konstruktionsraster) */
+body[data-bg-style="grid"],
+.bg-style-swatch[data-style="grid"] {
+  background-color: var(--bg-body);
+  background-image:
+    linear-gradient(var(--bg-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid-line) 1px, transparent 1px),
+    linear-gradient(var(--bg-grid-line-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid-line-major) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+}
+
+/* 3. Werkstatt-Licht (Vignette + sanfter Lampenschein) */
+body[data-bg-style="vignette"],
+.bg-style-swatch[data-style="vignette"] {
+  background-color: var(--bg-body);
+  background-image:
+    radial-gradient(1100px circle at 50% -10%, var(--bg-lamp-glow), transparent 55%),
+    radial-gradient(140% 140% at 50% 15%, var(--bg-vignette-center) 0%, var(--bg-body) 55%, var(--bg-vignette-edge) 100%);
+}
+
+/* 4. Mercedes Modern (gebürstetes Metall mit Lichtreflex + dezenten Sternen) */
+body[data-bg-style="mercedes-modern"],
+.bg-style-swatch[data-style="mercedes-modern"] {
+  background-color: var(--bg-body);
+  background-image:
+    
+    linear-gradient(120deg, transparent 35%, var(--merc-modern-sheen) 48%, var(--merc-modern-sheen) 52%, transparent 65%),
+    repeating-linear-gradient(60deg, var(--merc-modern-mesh) 0px, var(--merc-modern-mesh) 1px, transparent 1px, transparent 22px),
+    repeating-linear-gradient(-60deg, var(--merc-modern-mesh) 0px, var(--merc-modern-mesh) 1px, transparent 1px, transparent 22px),
+    linear-gradient(135deg, var(--merc-modern-a), var(--merc-modern-b), var(--merc-modern-a));
+  background-size: 70px 70px, auto, auto, auto, auto;
+}
+
+/* 5. Mercedes Klassik (warmes Leder-/Pepita-Anmuten + dezenten Sternen) */
+body[data-bg-style="mercedes-classic"],
+.bg-style-swatch[data-style="mercedes-classic"] {
+  background-color: var(--bg-body);
+  background-image:
+        repeating-linear-gradient(45deg, var(--merc-classic-line) 0px, var(--merc-classic-line) 1px, transparent 1px, transparent 16px),
+    repeating-linear-gradient(-45deg, var(--merc-classic-line-2) 0px, var(--merc-classic-line-2) 1px, transparent 1px, transparent 16px),
+    linear-gradient(160deg, var(--merc-classic-a), var(--merc-classic-b));
+  background-size: 70px 70px, auto, auto, auto;
+}
+
+
+
+.hidden {
+  display: none !important;
+}
+
+/* Technical Monospace Elements */
+.badge-plate, .banner-vin-sub, .kpi-value, input[type="number"], .font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   EBENE 1: KACHEL-AUSWAHL STARTBILDSCHIRM
+   ========================================================================== */
+
+.selection-container {
+  position: relative;
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.header-controls-floating {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 200;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.selection-header {
+  margin-bottom: 2.5rem;
+}
+
+.selection-header .logo {
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.selection-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.kachel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Wenn "Kundenfahrzeuge" in den Einstellungen deaktiviert ist, bleibt nur
+   noch eine Kachel übrig - dann schön mittig statt halbleer */
+#area-selection-grid.single-area {
+  grid-template-columns: 1fr;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.selection-card {
+  background: var(--card-gradient);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.selection-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.kachel-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.selection-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.selection-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Fahrzeug-Auswahlkacheln hinter "Meine Garage": kompakter, mit größerem Foto & mehr Infos */
+#garageVehicleGrid.kachel-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+/* Kompakte 2-Spalten-Ansicht auf dem Smartphone, nur beim Reiter "Alle" */
+@media (max-width: 600px) {
+  #garageVehicleGrid.kachel-grid-compact {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .vehicle-tile-compact {
+    padding: 0.5rem;
+  }
+
+  .vehicle-tile-compact .vehicle-tile-image,
+  .vehicle-tile-compact .vehicle-tile-icon {
+    height: 64px;
+    margin-bottom: 0.4rem;
+  }
+
+  .vehicle-tile-compact .vehicle-tile-icon {
+    font-size: 1.6rem;
+  }
+
+  .vehicle-tile-compact h3 {
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .vehicle-tile-compact > p {
+    font-size: 0.68rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .vehicle-tile-compact .vehicle-tile-info {
+    gap: 0.1rem;
+    padding-top: 0.3rem;
+  }
+
+  .vehicle-tile-compact .vehicle-tile-info span {
+    font-size: 0.62rem;
+  }
+
+  .vehicle-tile-compact .vehicle-tile-category-badge {
+    width: 20px;
+    height: 20px;
+    top: 0.4rem;
+    left: 0.4rem;
+  }
+
+  .vehicle-tile-compact .vehicle-tile-category-badge svg {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+/* Fahrzeugart-Filter (Alle / Autos / Anhänger / Boote) über den Kacheln */
+.category-filter-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.category-filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.78rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.category-filter-chip svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.category-filter-chip:hover {
+  border-color: var(--border-highlight);
+}
+
+.category-filter-chip.active {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Kategorie-Badge auf der Fahrzeugkachel selbst */
+.vehicle-tile-category-badge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: rgba(17, 24, 39, 0.65);
+  color: #fff;
+  backdrop-filter: blur(3px);
+}
+
+.vehicle-tile-category-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* TÜV-Plakette rechts auf der Fahrzeugkachel (Autos & Anhänger) */
+.tuev-plakette {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 2;
+}
+
+.tuev-plakette-ring {
+  position: absolute;
+  inset: 0;
+}
+
+.tuev-plakette-ring-num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #14110c;
+}
+
+/* Kurze Strichmarken nur am äußeren Rand (wie Minutenstriche einer Uhr),
+   nicht bis zur Mitte durchgehend - genau zwischen zwei Monatszahlen */
+.tuev-plakette-tick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.6px;
+  height: 11%;
+  background-color: #14110c;
+  border-radius: 1px;
+}
+
+/* Spezielle Markierung bei Monat 12: sitzt nur außen am Rand (wie ein an
+   dieser Stelle dickerer Rand), ragt aber nicht in die Zahl hinein */
+.tuev-plakette-tick-special {
+  width: 16%;
+  height: 12%;
+  border-radius: 1px;
+}
+
+/* Kurzer Strich von innen kommend, gleiche Stärke wie der äußere Strich,
+   auf derselben Linie wie Zahl und äußerer Strich - reicht nur knapp bis zur
+   Zahl heran, ragt aber nicht in den Jahreskreis hinein */
+.tuev-plakette-tick-inner {
+  height: 6%;
+}
+
+/* Zweistellige Monate (10/11/12) enger/schmaler, damit sie sich nicht
+   mit den Nachbarzahlen überschneiden */
+.tuev-plakette-ring-num-narrow {
+  letter-spacing: -1.2px;
+  font-size: 0.5rem;
+}
+
+.tuev-plakette-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32%;
+  height: 32%;
+  border-radius: 50%;
+  border: 1.6px solid rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tuev-plakette-year {
+  font-size: 0.58rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #14110c;
+}
+
+/* KM-Stand-Walze unten rechts in der Fahrzeug-Infokarte, wie die TÜV-Plakette
+   oben rechts - dezent gehalten, passend zu VIN/HSN-TSN-Zeilen im Stil */
+.odometer-wrapper {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 0.7rem;
+  z-index: 3;
+  text-align: right;
+}
+
+.odometer-label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* Klickbare Kachel zum Öffnen des Fahrzeugscheins - gleiche Größe/Optik wie
+   die anderen Kennzahlen-Kacheln im Dashboard */
+.fzschein-open-card {
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.fzschein-open-card:active {
+  transform: scale(0.98);
+}
+
+/* Mini-Vorschau: deutet die Papier-/Linien-Optik des echten Scheins an */
+.fzschein-mini-preview {
+  width: 100%;
+  max-width: 90px;
+  background-color: #dce8e4;
+  border: 1px solid #7a9990;
+  border-radius: 3px;
+  padding: 5px 6px;
+  margin: 0.25rem 0;
+}
+
+.fzschein-mini-line {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 8px;
+  border-bottom: 1px solid rgba(20, 60, 50, 0.3);
+}
+
+.fzschein-mini-line:last-child {
+  border-bottom: none;
+}
+
+.fzschein-mini-line span:first-child {
+  width: 8px;
+  height: 5px;
+  border: 1px solid rgba(47, 82, 69, 0.6);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.fzschein-mini-line span:last-child {
+  flex: 1;
+  height: 4px;
+  background-color: rgba(47, 82, 69, 0.25);
+  border-radius: 1px;
+}
+
+/* Modal etwas breiter, damit die zweispaltige Schein-Optik Platz hat */
+.fahrzeugschein-modal {
+  max-width: 700px;
+}
+
+/* Tablet & größere Bildschirme: mehr Platz, damit möglichst wenig gescrollt werden muss */
+@media (min-width: 700px) {
+  .fahrzeugschein-modal {
+    max-width: 1300px;
+    width: 96vw;
+    max-height: 95vh;
+  }
+}
+
+
+
+/* Nachgebauter Fahrzeugschein: helles, liniertes "Papier", zwei Spalten wie
+   die aufgeschlagenen Seiten des Originals, Schreibmaschinen-Schrift */
+/* Buch-Container mit Perspektive für den Umblätter-Effekt */
+.fzschein-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fzschein-photo-thumb-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.fzschein-photo-thumb {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.fzschein-photo-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-danger);
+  color: #fff;
+  border: none;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fzschein-book {
+  position: relative;
+  perspective: 1800px;
+  margin-bottom: 0.75rem;
+}
+
+.fzschein-paper {
+  position: relative;
+  background-color: #dce8e4;
+  border: 1px solid #7a9990;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.fzschein-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1.5px solid #2f5245;
+}
+
+.fzschein-header h4 {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #16302a;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Kleines ovales Länderkennzeichen "D", wie auf dem echten Dokument */
+.fzschein-oval-d {
+  flex-shrink: 0;
+  width: 26px;
+  height: 18px;
+  border: 1.5px solid #16302a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #16302a;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* "Eselsohr"-Ecken zum Umblättern, direkt auf dem Schein statt als Button.
+   Größer als optisch nötig, damit man sie auf dem Handy auch mit dem
+   Finger gut trifft (Mindest-Tapfläche ~44px). */
+.fzschein-corner {
+  position: absolute;
+  bottom: 0;
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  z-index: 5;
+  transition: width 0.15s, height 0.15s;
+}
+
+.fzschein-corner:hover {
+  width: 52px;
+  height: 52px;
+}
+
+.fzschein-corner-right {
+  right: 0;
+  background: linear-gradient(135deg, transparent 50%, #b9cdc4 51%, #a9c0b6 100%);
+  clip-path: polygon(100% 100%, 0% 100%, 100% 0%);
+  box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.2);
+  border-bottom-right-radius: 4px;
+}
+
+.fzschein-corner-left {
+  left: 0;
+  background: linear-gradient(225deg, transparent 50%, #b9cdc4 51%, #a9c0b6 100%);
+  clip-path: polygon(0% 100%, 100% 100%, 0% 0%);
+  box-shadow: 1px -1px 3px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 4px;
+}
+
+.fzschein-corner span {
+  position: absolute;
+  bottom: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #2f5245;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.fzschein-corner-right span { right: 5px; }
+.fzschein-corner-left span { left: 5px; }
+
+/* Eleganter Umblätter-Effekt: echte 3D-Drehung um die linke Kante (wie eine
+   Buchseite auf ihrem Falz), mit einem sanft durchlaufenden Schattenwurf,
+   der die Wölbung der Seite andeutet - dezent statt spektakulär */
+.fzschein-page {
+  position: relative;
+  backface-visibility: hidden;
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.fzschein-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.22), transparent 55%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes fzscheinPageTurnOut {
+  0%   { transform: rotateY(0deg); }
+  100% { transform: rotateY(-96deg); }
+}
+
+@keyframes fzscheinPageTurnIn {
+  0%   { transform: rotateY(96deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+@keyframes fzscheinShadowSweep {
+  0%   { opacity: 0; }
+  45%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fzschein-page-turning-out {
+  animation: fzscheinPageTurnOut 0.55s cubic-bezier(0.6, 0.05, 0.4, 1) forwards;
+}
+
+.fzschein-page-turning-in {
+  animation: fzscheinPageTurnIn 0.55s cubic-bezier(0.6, 0.05, 0.4, 1) forwards;
+}
+
+.fzschein-page-turning-out::after,
+.fzschein-page-turning-in::after {
+  animation: fzscheinShadowSweep 0.55s ease forwards;
+}
+
+.fzschein-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.fzschein-field {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  height: 28px;
+  box-sizing: border-box;
+  overflow: visible;
+  border-bottom: 1px solid rgba(20, 60, 50, 0.35);
+}
+
+/* Sobald ein Feld ausgefüllt ist, verschwindet ja der Platzhaltertext -
+   dafür erscheint oben ganz dezent/blass, was in dem Feld steht */
+.fzschein-field::before {
+  content: attr(data-fieldlabel);
+  position: absolute;
+  left: 22px;
+  bottom: 0;
+  max-width: calc(100% - 26px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.4rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(47, 82, 69, 0.28);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.fzschein-field:has(input:not(:placeholder-shown))::before {
+  opacity: 1;
+}
+
+.fzschein-tag {
+  flex-shrink: 0;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #2f5245;
+  border: 1px solid #2f5245;
+  border-radius: 2px;
+  padding: 1px 0.2rem;
+  line-height: 1;
+  min-width: 1.1rem;
+  text-align: center;
+  cursor: help;
+}
+
+/* Höhere Spezifität nötig, damit die globalen Eingabefeld-Styles (die im
+   Dunkelmodus helle Schrift + dunklen Kasten setzen) hier nicht greifen */
+#fahrzeugscheinModal .fzschein-field input {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  min-height: 0;
+  border: none !important;
+  background: transparent !important;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #16302a !important;
+  padding: 0;
+}
+
+/* Natives Kalender-Symbol beim Datumsfeld ausblenden, damit keine Pfeile übrig bleiben */
+#fahrzeugscheinModal .fzschein-field input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+#fahrzeugscheinModal .fzschein-field input::placeholder {
+  color: rgba(47, 82, 69, 0.55);
+  font-weight: 400;
+  font-size: 0.68rem;
+}
+
+#fahrzeugscheinModal .fzschein-field input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Handy im Querformat: mehr Höhe fürs Modal nutzen */
+@media (orientation: landscape) and (max-height: 500px) {
+  .fahrzeugschein-modal {
+    max-height: 96vh;
+    max-width: 90vw;
+  }
+}
+
+/* Tacho-Walzen-Anzeige für den KM-Stand (nur Autos) - dezent gehalten,
+   damit sie nicht mit der eigentlichen Kennzahlen-Kachel konkurriert */
+.odometer {
+  display: inline-flex;
+  background-color: rgba(20, 20, 20, 0.7);
+  border-radius: 4px;
+  padding: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.odometer-digit {
+  position: relative;
+  width: 14px;
+  height: 20px;
+  margin: 0 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.82);
+  background: linear-gradient(180deg, #333 0%, #1a1a1a 48%, #060606 50%, #202020 100%);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -2px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+  /* Etwas Platz unten reservieren, damit die Walze nicht die letzte Textzeile überlappt */
+  .vehicle-banner-card { padding-bottom: 3.4rem; }
+
+  .odometer-digit {
+    width: 12px;
+    height: 18px;
+    font-size: 0.68rem;
+  }
+}
+
+.tuev-plakette.color-braun { background-color: rgba(138, 90, 46, 0.8); }
+.tuev-plakette.color-rosa { background-color: rgba(226, 143, 174, 0.8); }
+.tuev-plakette.color-gruen { background-color: rgba(79, 158, 74, 0.8); }
+.tuev-plakette.color-orange { background-color: rgba(239, 125, 26, 0.8); }
+.tuev-plakette.color-blau { background-color: rgba(63, 127, 193, 0.8); }
+.tuev-plakette.color-gelb { background-color: rgba(242, 197, 24, 0.8); }
+
+.tuev-plakette-empty {
+  background-color: #cfcfcf;
+  border-style: dashed;
+}
+
+.tuev-plakette-overdue-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #e11d1d;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.vehicle-tile-compact .tuev-plakette {
+  width: 44px;
+  height: 44px;
+  top: 0.4rem;
+  right: 0.4rem;
+  /* Kleinere Plakette braucht proportional dünnere Linien, sonst wirkt der
+     Rand im Verhältnis zur Größe viel zu dick (war vorher 1:1 mit der
+     großen 64px-Plakette übernommen) */
+  border-width: 2px;
+}
+
+.vehicle-tile-compact .tuev-plakette-ring-num {
+  font-size: 0.44rem;
+}
+
+.vehicle-tile-compact .tuev-plakette-year {
+  font-size: 0.5rem;
+}
+
+.vehicle-tile-compact .tuev-plakette-center {
+  border-width: 1.1px;
+}
+
+/* :not(...) hier wichtig: sonst überschreibt diese Regel (2 Klassen) auch
+   die Monat-12-Spezialmarkierung, die eigentlich breiter sein soll
+   (.tuev-plakette-tick-special hat selbst nur 1 Klasse und würde sonst
+   trotz späterer Definition durch die höhere Spezifität verlieren) */
+.vehicle-tile-compact .tuev-plakette-tick:not(.tuev-plakette-tick-special) {
+  width: 1.1px;
+}
+
+.vehicle-tile-compact .tuev-plakette-overdue-badge {
+  width: 12px;
+  height: 12px;
+  font-size: 8px;
+  top: -3px;
+  right: -3px;
+}
+
+@media (min-width: 851px) {
+  .category-filter-row {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-filter-chip {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.88rem;
+  }
+
+  .category-filter-chip svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.vehicle-tile {
+  position: relative;
+  padding: 0.9rem;
+  align-items: stretch;
+  text-align: left;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.vehicle-tile-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.65rem;
+}
+
+.vehicle-tile-icon {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.75rem;
+  background: var(--bg-body);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.65rem;
+}
+
+.vehicle-tile h3 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.vehicle-tile > p {
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-tile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.vehicle-tile-info span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.vehicle-tile-info span strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.vehicle-tile-info .reminder-overdue-text {
+  color: var(--accent-danger);
+}
+
+.vehicle-tile-info .reminder-overdue-text strong {
+  color: var(--accent-danger);
+}
+
+
+
+
+/* ==========================================================================
+   HEADER & NAVIGATION (EBENE 2 & 3)
+   ========================================================================== */
+
+#app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.app-header {
+  height: 52px;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Clean Back-Button (Icon Only) */
+.btn-back-clean {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #f8fafc;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Für Safari */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Verhindert das blaue Blinken auf Touchscreens */
+}
+
+.btn-back-clean svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+/* Hover & Tap Effects */
+.btn-back-clean:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+.btn-back-clean:hover svg {
+  transform: translateX(-3px); /* Subtiles Zurück-Gleiten des Pfeils */
+}
+
+.btn-back-clean:active {
+  transform: scale(0.92); /* Leichter Druck-Effekt beim Klicken */
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* App-Logo: dunkle Linien fuer Hell-Modus, helle Linien fuer Dunkel-Modus */
+.app-logo-img {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.app-logo-img.logo-for-dark {
+  background-image: url("icons/logo-light.png");
+}
+
+.app-logo-img.logo-for-light {
+  background-image: url("icons/logo-dark.png");
+  display: none;
+}
+
+[data-theme="light"] .app-logo-img.logo-for-dark {
+  display: none;
+}
+
+[data-theme="light"] .app-logo-img.logo-for-light {
+  display: inline-block;
+}
+
+/* Splash-Screen beim App-Start */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--bg-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-screen.splash-hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-logo-wrap {
+  display: flex;
+}
+
+.splash-logo {
+  width: 130px;
+  height: 130px;
+  opacity: 0;
+  transform: scale(0.82);
+  animation: splashAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
+}
+
+@keyframes splashAppear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.vehicle-selector-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.vehicle-selector-wrapper select {
+  min-width: 160px;
+  height: 36px;
+}
+
+.btn-theme-toggle {
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Layout Container */
+.app-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+/* Sidebar (Desktop) */
+.sidebar {
+  width: 200px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  padding: 0.75rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.nav-item {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.15s ease;
+  min-height: 40px;
+  width: 100%;
+}
+
+.nav-item:hover {
+  background-color: rgba(243, 156, 18, 0.08);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+.nav-item.active {
+  background-color: var(--accent-primary);
+  color: #000;
+  border-color: var(--accent-primary);
+}
+
+/* NAVIGATION DYNAMIK (Eigene Fahrzeuge vs. Kunden) */
+.nav-eigene-only {
+  display: flex;
+}
+
+.nav-kunden-only {
+  display: none;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block; /* Oder flex/grid je nach Layout */
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   CARDS & DASHBOARD
+   ========================================================================== */
+
+/* Frosted-Glass-Effekt: alle Kacheln, Leisten & Flächen, auf denen man klickt,
+   sind halbtransparent (siehe --bg-card/--bg-sidebar/--card-gradient) und
+   bekommen zusätzlich einen Weichzeichner, damit der App-Hintergrund dezent
+   durchscheint statt hart durchsichtig zu wirken. */
+.card,
+.kpi-card,
+.selection-card,
+.vehicle-banner-card,
+.app-header,
+.sidebar,
+.modal,
+.customer-select-panel {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Schwebender "+"-Button (Tanken/Wartung): öffnet das Erfassungsformular als Modal */
+.fab-add-btn {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  color: #111827;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  z-index: 50;
+  transition: transform 0.15s;
+}
+
+.fab-add-btn:hover {
+  transform: scale(1.06);
+}
+
+.fab-add-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+.fab-badge-plus {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #111827;
+  color: var(--accent-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-body);
+}
+
+@media (min-width: 851px) {
+  .fab-add-btn {
+    bottom: 1.5rem;
+  }
+}
+
+/* Archiv (verkaufte Fahrzeuge) */
+.archive-toggle-row {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.archive-toggle-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.archive-toggle-link:hover {
+  color: var(--text-main);
+}
+
+.archive-grid {
+  margin-top: 1rem;
+}
+
+.vehicle-tile-archived {
+  opacity: 0.6;
+}
+
+.vehicle-tile-archived-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  margin-bottom: 0.4rem;
+}
+
+.vehicle-tile-archived-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.vehicle-tile-archived-actions button {
+  flex: 1;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.4rem;
+}
+
+/* Kleine Spielerei: Icon fährt beim Filterwechsel quer über den Bildschirm */
+.category-drive-by-icon {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  color: var(--accent-primary);
+  opacity: 0.55;
+  z-index: 40;
+  pointer-events: none;
+  animation: categoryDriveBy 2.4s ease-in-out forwards;
+}
+
+.category-drive-by-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes categoryDriveBy {
+  0% { transform: translate(-40px, -50%); opacity: 0; }
+  15% { opacity: 0.55; }
+  85% { opacity: 0.55; }
+  100% { transform: translate(calc(100vw + 10px), -50%); opacity: 0; }
+}
+
+/* Kontextmenü bei langem Drücken auf eine Fahrzeugkachel */
+.tile-context-menu {
+  position: fixed;
+  z-index: 500;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  padding: 0.4rem;
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: tileContextMenuAppear 0.12s ease;
+}
+
+@keyframes tileContextMenuAppear {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.tile-context-menu button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.tile-context-menu button:hover {
+  background-color: var(--table-hover-bg);
+}
+
+.tile-context-menu button svg {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.tile-context-menu-danger {
+  color: var(--accent-danger) !important;
+}
+
+.tile-context-menu-danger svg {
+  color: var(--accent-danger) !important;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.card h2, .card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.sub-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+
+/* Vehicle Banner Card */
+.vehicle-banner-card {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  padding-right: 5.5rem;
+  background: var(--card-gradient);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* TÜV-Plakette auf der Dashboard-Fahrzeugkarte (rechts oben auf der Karte,
+   nicht im kleinen Bildrahmen, damit sie auch auf dem Handy nicht abgeschnitten wird) */
+#dashTuevPlakette {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 3;
+}
+
+#dashTuevPlakette .tuev-plakette {
+  position: static;
+}
+
+.vehicle-banner-content {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.vehicle-image-wrapper {
+  position: relative;
+  width: 130px;
+  height: 90px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.vehicle-dash-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vehicle-image-placeholder {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.vehicle-banner-info { flex: 1; }
+
+.banner-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.banner-title-row h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background-color: var(--border-color);
+  color: var(--text-main);
+  border: 1px solid var(--border-highlight);
+}
+
+.badge-partial {
+  background-color: rgba(230, 126, 34, 0.15);
+  color: var(--accent-warning);
+  white-space: nowrap;
+}
+
+.badge-deal {
+  background-color: rgba(46, 204, 113, 0.15);
+  color: var(--accent-success);
+  border-color: rgba(46, 204, 113, 0.35);
+  margin-left: 0.3rem;
+  white-space: nowrap;
+}
+
+/* --- Tank-Deal-Übersicht im Tankungen-Tab --- */
+.fuel-deal-card { margin-bottom: 1rem; }
+
+.fuel-deal-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.fuel-deal-head h3 { margin: 0; }
+.fuel-deal-head .sub-text { margin: 0; font-size: 0.75rem; }
+
+.fuel-deal-meter { margin-bottom: 0.9rem; }
+.fuel-deal-meter-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+.fuel-deal-meter-top strong {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text-main);
+}
+.fuel-deal-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+}
+.fuel-deal-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent-primary);
+  transition: width 0.4s ease;
+}
+.fuel-deal-meter-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+.fuel-deal-meter.is-over .fuel-deal-bar span { background: var(--accent-danger); }
+.fuel-deal-meter.is-over .fuel-deal-meter-top strong { color: var(--accent-danger); }
+
+.fuel-deal-savings-title {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding-top: 0.75rem;
+  margin-bottom: 0.4rem;
+  border-top: 1px dashed var(--border-color);
+}
+.fuel-deal-savings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.fuel-deal-saving {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.fuel-deal-saving span {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.fuel-deal-saving strong {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent-success);
+}
+.fuel-deal-saving.is-negative strong { color: var(--accent-danger); }
+.fuel-deal-saving small {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+.fuel-deal-hint { margin-bottom: 0; }
+.fuel-deal-avg-note {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0.6rem 0 0;
+}
+.fuel-deal-discount-group .form-row { flex-direction: row; gap: 0.75rem; }
+.fuel-deal-discount-group .form-row .form-group { margin-bottom: 0; min-width: 0; }
+.fuel-deal-discount-group small { display: block; margin-top: 0.2rem; font-size: 0.7rem; }
+.fuel-deal-discount-group #fuelDealDiscountHint { margin: 0.4rem 0 0; font-size: 0.72rem; }
+
+.badge-plate {
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid #000;
+  letter-spacing: 0.5px;
+  font-size: 0.78rem;
+}
+
+.banner-specs-row {
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
+.banner-vin-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.banner-notes {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Dashboard Grid & KPIs */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.kpi-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.kpi-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.kpi-value small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.kpi-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.kpi-sub-warning {
+  color: var(--accent-danger);
+  font-weight: 600;
+}
+
+/* Zweite, dezentere Detailzeile unter der Gesamtkosten-Kachel (Gesamt-Liter +
+   reine Spritkosten) - etwas schwächer als die normale Sub-Zeile, damit die
+   Kachel nicht überladen wirkt */
+/* Mini-Vorschau in der Kachel "Gesamtkosten" */
+.kpi-cost-preview { margin-top: 0.45rem; }
+.kpi-cost-bar {
+  display: flex;
+  gap: 2px;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.kpi-cost-bar span { min-width: 3px; }
+.kpi-cost-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.6rem;
+  margin-top: 0.35rem;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+.kpi-cost-legend span { display: inline-flex; align-items: center; gap: 0.25rem; white-space: nowrap; }
+.kpi-cost-legend i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+
+.tire-kpi-visual {
+  position: relative;
+  width: 124px;
+  height: 62px;
+  margin: 0.15rem auto 0.05rem;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.tire-kpi-track {
+  display: flex;
+  width: 248px;
+  height: 100%;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tire-kpi-page {
+  flex: 0 0 124px;
+  width: 124px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tire-kpi-wheel {
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  transition: opacity 0.15s ease;
+}
+
+.tire-kpi-visual.tire-kpi-empty .tire-kpi-wheel {
+  opacity: 0.4;
+}
+
+.tire-kpi-axle-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-primary);
+  text-align: center;
+}
+
+.tire-kpi-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: 0.1rem 0 0.05rem;
+}
+
+.tire-kpi-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border-color);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.tire-kpi-dot.active {
+  background: var(--accent-primary);
+  transform: scale(1.2);
+}
+
+/* Reminders & Charts */
+.reminder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reminder-item {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reminder-item:last-child {
+  border-bottom: none;
+}
+
+.reminder-title {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.reminder-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.reminder-item.reminder-overdue .reminder-meta {
+  color: var(--accent-danger);
+  font-weight: 700;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.chart-container {
+  position: relative;
+  height: 220px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   FORMULAR-ELEMENTE & BUTTONS
+   ========================================================================== */
+
+.form-group { margin-bottom: 0.85rem; }
+
+.form-group.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  margin-bottom: 0;
+  color: var(--text-main);
+}
+
+.form-row { display: flex; gap: 0.75rem; }
+.form-row .form-group { flex: 1; }
+
+.routine-interval-box {
+  margin-bottom: 1rem;
+}
+
+.routine-interval-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.routine-interval-box .form-row {
+  margin-bottom: 0.5rem;
+}
+
+.routine-interval-hint {
+  margin: 0;
+}
+
+.interval-preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.interval-preset-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  width: 100%;
+}
+
+.interval-preset-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  background: rgba(255,255,255,0.05);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.interval-preset-btn:hover,
+.interval-preset-btn:active {
+  background: var(--accent-color, #3b82f6);
+  border-color: var(--accent-color, #3b82f6);
+  color: #fff;
+}
+
+/* --- Reifen & Felgen --- */
+.tire-sets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.tire-set-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tire-set-card.tire-set-mounted {
+  border-color: var(--accent-primary);
+}
+
+.tire-set-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tire-set-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tire-set-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tire-set-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.tire-set-badge-mounted {
+  background: rgba(46, 204, 113, 0.18);
+  color: var(--accent-success);
+}
+
+.tire-set-badge-stored {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.tire-set-badge-old {
+  background: rgba(231, 76, 60, 0.18);
+  color: var(--accent-danger);
+}
+
+.tire-set-specs {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.tire-set-age {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.tire-set-age.tire-set-age-old {
+  color: var(--accent-danger);
+  font-weight: 600;
+}
+
+.tire-set-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.tire-swap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.tire-swap-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--text-main);
+  font: inherit;
+}
+
+.tire-swap-option:hover {
+  border-color: var(--accent-primary);
+}
+
+.tire-swap-option.tire-swap-option-current {
+  border-color: var(--accent-primary);
+  background: rgba(243, 156, 18, 0.08);
+}
+
+.kpi-card-clickable {
+  cursor: pointer;
+}
+
+.consumption-chart-sub { margin: -0.35rem 0 0.6rem; font-size: 0.75rem; }
+
+/* --- Sammelrechnung: Auswahl der Aufträge --- */
+.combined-invoice-list {
+  max-height: 50vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+.combined-invoice-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  cursor: pointer;
+}
+.combined-invoice-item + .combined-invoice-item { border-top: 1px solid var(--border-color); }
+.combined-invoice-item input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--accent-primary); }
+.combined-invoice-item-main { flex: 1; min-width: 0; display: flex; flex-direction: column; font-size: 0.85rem; }
+.combined-invoice-item-main strong { overflow-wrap: anywhere; }
+.combined-invoice-item-main small { color: var(--text-muted); font-size: 0.72rem; }
+.combined-invoice-item-price { font-family: var(--font-mono); font-size: 0.85rem; white-space: nowrap; }
+.combined-invoice-summary { font-size: 0.85rem; font-weight: 600; margin: 0.75rem 0 0; }
+
+/* --- Backup-Erinnerung auf dem Startbildschirm --- */
+.backup-reminder {
+  max-width: 720px;
+  margin: 0 auto 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+}
+.backup-reminder-text { display: flex; flex-direction: column; gap: 0.15rem; font-size: 0.82rem; min-width: 0; }
+.backup-reminder-text strong { color: var(--accent-primary); }
+.backup-reminder-text span { color: var(--text-muted); }
+.backup-reminder-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.backup-reminder-select {
+  width: auto;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* --- Kosten im Detail (Popup hinter der Gesamtkosten-Kachel) --- */
+.cost-detail-periods { margin-bottom: 1rem; }
+.cost-detail-periods .theme-switch-btn { flex: 1; padding: 0.45rem 0.3rem; }
+
+.cost-detail-empty { text-align: center; padding: 1.5rem 0; }
+
+.cost-detail-hero {
+  text-align: center;
+  padding: 0.25rem 0 1rem;
+  border-bottom: 1px dashed var(--border-color);
+  margin-bottom: 1rem;
+}
+.cost-detail-hero-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.cost-detail-hero-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0.15rem 0 0.75rem;
+}
+.cost-detail-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+.cost-detail-stats > div { display: flex; flex-direction: column; min-width: 0; }
+.cost-detail-stats span {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.cost-detail-stats strong { font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-main); }
+.cost-detail-stats small { font-size: 0.68rem; color: var(--text-muted); }
+
+.cost-detail-section { margin-bottom: 1.25rem; }
+.cost-detail-section h4 {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.6rem;
+}
+
+.cost-detail-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cost-detail-cat { margin-bottom: 0.7rem; }
+.cost-detail-cat-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0.2rem 0;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+}
+.cost-detail-cat-head:disabled { cursor: default; opacity: 1; }
+.cost-detail-cat-name { flex: 1; min-width: 0; }
+.cost-detail-cat-name small { color: var(--text-muted); }
+.cost-detail-cat-pct { color: var(--text-muted); font-size: 0.75rem; }
+.cost-detail-cat-head strong { font-family: var(--font-mono); white-space: nowrap; }
+/* Aufklapp-Pfeil (nur bei Kraftstoff): runder Knopf, dreht sich beim Öffnen */
+.cost-detail-chevron {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.cost-detail-chevron:not(:empty) {
+  border: 1px solid var(--border-highlight);
+  background: var(--bg-body);
+  color: var(--accent-primary);
+}
+.cost-detail-chevron svg { transition: transform 0.2s ease; }
+.cost-detail-cat.is-open .cost-detail-chevron svg { transform: rotate(180deg); }
+.cost-detail-cat-head:not(:disabled):hover .cost-detail-chevron { border-color: var(--accent-primary); }
+
+.cost-detail-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+.cost-detail-bar span { display: block; height: 100%; border-radius: inherit; }
+
+.cost-detail-fuel-types {
+  margin-top: 0.5rem;
+  padding: 0.6rem 0 0 1.1rem;
+  border-top: 1px solid var(--border-color);
+}
+.cost-detail-fuel { margin-bottom: 0.75rem; }
+.cost-detail-fuel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.cost-detail-fuel-top small { color: var(--text-muted); font-size: 0.7rem; margin-left: 0.25rem; }
+.cost-detail-fuel-top strong { font-family: var(--font-mono); white-space: nowrap; }
+.cost-detail-fuel-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem; }
+.cost-detail-note { font-size: 0.78rem; color: var(--text-muted); margin: 0.25rem 0 0; }
+.cost-detail-note strong { color: var(--accent-success); font-family: var(--font-mono); }
+
+.cost-detail-chart { height: 220px; }
+
+/* Motorenverwaltung bei Booten (Stammdaten) */
+#boatEnginesSection {
+  margin-bottom: 1rem;
+}
+
+.boat-engine-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.boat-engine-row input {
+  flex: 1;
+}
+
+.boat-engine-row .btn-danger {
+  flex-shrink: 0;
+  padding: 0.45rem 0.65rem;
+}
+
+label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="month"],
+select,
+textarea {
+  width: 100%;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 15px; /* Verhindert Auto-Zoom auf iOS */
+  outline: none;
+  min-height: 38px;
+  transition: border-color 0.15s;
+}
+
+textarea { min-height: 70px; resize: vertical; }
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+/* Das native Kalender-/Monats-Auswahl-Symbol wird vom Browser standardmäßig
+   dunkel gezeichnet - im (voreingestellten) Dunkelmodus auf dem dunklen
+   Eingabefeld dadurch praktisch unsichtbar, sodass nicht erkennbar ist, wo man
+   zum Öffnen der Auswahl tippen muss. Hier aufgehellt; im hellen Design (wo
+   das Symbol auf hellem Grund von Haus aus gut sichtbar ist) wieder normal */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+  cursor: pointer;
+}
+
+[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator,
+[data-theme="light"] input[type="month"]::-webkit-calendar-picker-indicator {
+  filter: none;
+}
+
+/* Kundenfahrzeug-Auswahl: aufklappbarer Bereich mit Suche + scrollbarer Liste */
+.customer-select-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.customer-select-toggle:hover {
+  border-color: var(--border-highlight);
+}
+
+.customer-select-toggle-arrow {
+  color: var(--text-muted);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  display: flex;
+}
+
+.customer-select-toggle-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.customer-select-group.open .customer-select-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+.customer-select-panel {
+  margin-top: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem;
+  background-color: var(--bg-card);
+}
+
+.customer-select-panel input {
+  margin-bottom: 0.5rem;
+}
+
+.customer-select-list {
+  max-height: 260px;
+  overflow-y: auto;
+  border-top: 1px solid var(--border-color);
+}
+
+.customer-select-list-item {
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.customer-select-list-item:last-child {
+  border-bottom: none;
+}
+
+.customer-select-list-item:hover {
+  background-color: var(--table-hover-bg);
+}
+
+.customer-select-list-item.active {
+  background-color: var(--table-hover-bg);
+  border-left: 3px solid var(--accent-primary);
+  padding-left: calc(0.4rem - 3px);
+}
+
+.customer-select-list-item .cs-owner {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.customer-select-list-item .cs-meta {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.customer-select-empty {
+  padding: 0.75rem 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Compact Buttons */
+.btn {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 38px;
+  font-size: 0.85rem;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.9; }
+
+.btn-primary { background-color: var(--accent-primary); color: #000; }
+.btn-secondary { background-color: var(--bg-body); border-color: var(--border-color); color: var(--text-main); }
+.btn-danger { background-color: var(--accent-danger); color: #fff; }
+.btn-sm { padding: 0.25rem 0.5rem; font-size: 0.78rem; min-height: 30px; }
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.form-actions .btn { flex: 1; min-width: 120px; }
+
+/* Image Upload & Previews */
+.image-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.image-preview-item {
+  width: 100%;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+}
+
+.vehicle-upload-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.image-preview-single img {
+  max-width: 150px;
+  max-height: 100px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+}
+
+/* Dynamic Invoice Rows */
+.invoice-item-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+.invoice-item-row input[type="text"] { flex: 3; }
+.invoice-item-row input[type="number"] { flex: 1; }
+
+/* ==========================================================================
+   TABELLEN (DATA-TABLES)
+   ========================================================================== */
+
+.table-responsive { overflow-x: auto; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.data-table th {
+  background-color: var(--table-header-bg);
+  color: var(--text-muted);
+  padding: 0.55rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.data-table td {
+  padding: 0.55rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Notiz-Spalte in der Tankungs-Tabelle: lange Notizen umbrechen statt die Tabelle zu sprengen */
+.data-table .fuel-note {
+  display: inline-block;
+  max-width: 220px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.data-table tr.clickable-row { cursor: pointer; }
+.data-table tr.clickable-row:hover { background-color: var(--table-hover-bg); }
+
+/* ==========================================================================
+   MODALS & DETAILS
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0.75rem;
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay.active { display: flex; }
+
+/* Bildzuschnitt-Fenster wird teils AUS einem anderen offenen Fenster heraus
+   geöffnet (z.B. aus dem Fahrzeugschein). Es muss dann immer im Vordergrund
+   erscheinen, unabhängig von der DOM-Reihenfolge der Modals. */
+#imageCropModal.active { z-index: 1200; }
+
+/* Werden aus dem Einstellungen-Fenster heraus geöffnet - müssen davor liegen */
+#acarImportModal.active,
+#spritmonitorImportModal.active { z-index: 1200; }
+
+/* Spritmonitor-Import: Kraftstoff-Zuordnung je Nummer */
+.sm-fuel-row { margin-top: 0.6rem; }
+.sm-fuel-row .acar-fuel-label { line-height: 1.4; }
+
+.modal {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 480px;
+  padding: 1.25rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-lg { max-width: 650px; }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.modal-close:hover { color: var(--text-main); }
+
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* Bildzuschnitt-Werkzeug (Fahrzeugfoto Stammdaten & Fahrzeugschein-Scan):
+   zeigt das komplette Bild, darüber ein frei verschieb- und
+   größenveränderbares Auswahlrechteck. */
+.crop-frame-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.crop-rotate-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.crop-rotate-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  background: none;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.crop-rotate-btn svg {
+  color: var(--text-main);
+}
+
+.crop-rotate-btn span {
+  font-size: 0.68rem;
+  letter-spacing: 0.2px;
+}
+
+.crop-rotate-btn:active svg { opacity: 0.6; }
+
+.crop-stage {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+  touch-action: none;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--bg-body);
+}
+
+.crop-stage img {
+  display: block;
+  max-width: min(420px, 82vw);
+  max-height: 55vh;
+  width: auto;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.crop-selection {
+  position: absolute;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
+  cursor: move;
+  touch-action: none;
+}
+
+.crop-handle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border: 2px solid var(--accent-primary, #2563eb);
+  border-radius: 50%;
+  touch-action: none;
+}
+
+.crop-handle-nw { top: -11px; left: -11px; cursor: nwse-resize; }
+.crop-handle-ne { top: -11px; right: -11px; cursor: nesw-resize; }
+.crop-handle-sw { bottom: -11px; left: -11px; cursor: nesw-resize; }
+.crop-handle-se { bottom: -11px; right: -11px; cursor: nwse-resize; }
+
+/* Foto-Ansicht mit Zoom (Fahrzeugfoto & Fahrzeugschein-Scan) */
+.image-zoom-modal.active { z-index: 1200; }
+
+.image-zoom-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.image-zoom-stage img {
+  max-width: 92vw;
+  max-height: 92vh;
+  border-radius: 6px;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
+  cursor: zoom-in;
+}
+
+.image-zoom-stage img.dragging { cursor: grabbing; }
+
+.image-zoom-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* aCar-Import: Vorschau-Karten je gefundenem Fahrzeug */
+.acar-vehicle-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.65rem;
+  background-color: var(--bg-card, var(--bg-body));
+}
+
+.acar-vehicle-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.acar-vehicle-card-header input[type="checkbox"] {
+  margin-top: 0.2rem;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.acar-vehicle-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.acar-vehicle-card-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.acar-vehicle-card-counts {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.acar-vehicle-card-target {
+  margin-top: 0.5rem;
+}
+
+.acar-vehicle-card-target select {
+  width: 100%;
+}
+
+.acar-fuel-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.acar-fuel-custom-input {
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.acar-import-summary-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.detail-section {
+  margin-bottom: 1rem;
+}
+
+.detail-section h4 {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+/* Darstellung: Hell/Dunkel-Umschalter */
+.theme-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.theme-switch {
+  display: flex;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.theme-switch-btn {
+  background-color: var(--bg-body);
+  color: var(--text-muted);
+  border: none;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.theme-switch-btn + .theme-switch-btn {
+  border-left: 1px solid var(--border-color);
+}
+
+.theme-switch-btn.active {
+  background-color: var(--accent-primary);
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Darstellung: Hintergrundstil-Auswahl mit Vorschau-Kacheln */
+.bg-style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.6rem;
+}
+
+.bg-style-option {
+  background: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: inherit;
+}
+
+.bg-style-swatch {
+  display: block;
+  width: 100%;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.bg-style-name {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.bg-style-option.active {
+  border-color: var(--accent-primary);
+}
+
+.bg-style-option.active .bg-style-name {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Darstellung: Akzentfarben-Auswahl */
+.accent-color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.accent-color-option {
+  background: none;
+  border: none;
+  padding: 3px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: inherit;
+}
+
+.accent-color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: block;
+  border: 2px solid transparent;
+}
+
+.accent-color-option.active .accent-color-swatch {
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 2px var(--bg-card);
+}
+
+.accent-color-name {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.accent-color-option.active .accent-color-name {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.detail-section details {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+}
+
+.detail-section details[open] {
+  padding-bottom: 0.85rem;
+}
+
+.detail-section details summary {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.detail-section details summary::-webkit-details-marker {
+  display: none;
+}
+
+.detail-section details summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.4rem;
+  transition: transform 0.15s;
+}
+
+.detail-section details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.detail-section details summary + * {
+  margin-top: 0.75rem;
+}
+
+.settings-summary-icon {
+  display: inline-flex;
+  vertical-align: -3px;
+  margin-right: 0.4rem;
+  color: var(--accent-primary);
+}
+
+.settings-summary-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.settings-accordion-danger summary {
+  color: var(--accent-danger);
+}
+
+.settings-accordion-danger .settings-summary-icon {
+  color: var(--accent-danger);
+}
+
+.detail-notes-box {
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  white-space: pre-line;
+}
+
+.detail-image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+}
+
+.detail-image-gallery img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MOBILE-OPTIMIERUNGEN (SMARTPHONES)
+   ========================================================================== */
+
+@media (max-width: 850px) {
+  .kachel-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .selection-card {
+    padding: 1.75rem 1rem;
+  }
+
+  .app-container { 
+    flex-direction: column; 
+    padding-bottom: 58px;
+  }
+  
+  .main-content { padding: 0.75rem; }
+
+  /* Mobile Bottom Navigation */
+  .sidebar { 
+    width: 100%; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    z-index: 999;
+    background-color: var(--bg-card);
+    flex-direction: row; 
+    justify-content: space-around;
+    align-items: center;
+    border-right: none;
+    border-top: 1px solid var(--border-color);
+    padding: 0 0.2rem;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .nav-item { 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2rem;
+    gap: 0.1rem;
+    flex: 1;
+    border-radius: var(--radius-sm);
+    height: 100%;
+    border: none;
+  }
+
+  .nav-icon { display: block; font-size: 1.1rem; }
+  .nav-label { font-size: 0.65rem; font-weight: 600; }
+
+  .charts-grid, .grid-2col { grid-template-columns: 1fr; gap: 0.75rem; }
+  .form-row { flex-direction: column; gap: 0; }
+  .vehicle-banner-content { flex-direction: column; align-items: stretch; }
+  .vehicle-image-wrapper { width: 100%; height: 130px; }
+  .dashboard-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Gestapeltes Layout: Plakette liegt nur auf dem Bild oben, Text braucht
+     den reservierten Platz rechts nicht - Karte wieder normal nutzen */
+  .vehicle-banner-card { padding-right: 1rem; }
+  #dashTuevPlakette .tuev-plakette {
+    width: 52px;
+    height: 52px;
+    /* Bei 52px braucht der Ring proportional dünnere Linien als die volle
+       64px-Plakette, sonst wirkt der Rand zu dick (analog zur 44px-Kachel) */
+    border-width: 2.4px;
+  }
+  #dashTuevPlakette .tuev-plakette-center { border-width: 1.3px; }
+  #dashTuevPlakette .tuev-plakette-tick:not(.tuev-plakette-tick-special) { width: 1.3px; }
+  #dashTuevPlakette .tuev-plakette-year { font-size: 0.54rem; }
+  #dashTuevPlakette .tuev-plakette-ring-num { font-size: 0.5rem; }
+
+  /* Mobile Data Table (Card-View) */
+  .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr { display: block; }
+  .data-table thead tr { position: absolute; top: -9999px; left: -9999px; }
+  
+  .data-table tr {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+    padding: 0.55rem;
+  }
+
+  .data-table td { 
+    border: none;
+    padding: 0.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+  }
+
+  .data-table td:before { 
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding-right: 0.5rem;
+  }
+
+  .data-table td:last-child {
+    justify-content: flex-end;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+    padding-top: 0.4rem;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .data-table td:last-child:before { content: ""; }
+
+  .data-table td.fuel-note-cell { align-items: flex-start; }
+  .data-table .fuel-note { max-width: 70%; text-align: right; }
+}
+
+/* ==========================================================================
+   DRUCK / PDF STYLESHEET
+   ========================================================================== */
+
+.print-only { display: none; }
+
+@media print {
+  @page { margin: 0; size: auto; }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-family: Arial, sans-serif;
+  }
+
+  #selection-screen, #app-wrapper, .modal-overlay {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15mm !important;
+    box-sizing: border-box !important;
+  }
+}
+/* ==========================================================================
+   GARAGEN-TOR ANIMATION (Rolltor fährt hoch)
+   ========================================================================== */
+
+.garage-door-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  perspective: 1200px;
+}
+
+.garage-door-panel {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+  border-bottom: 4px solid #f39c12;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transform: translateY(0);
+}
+
+.garage-door-panel .slat {
+  width: 100%;
+  height: 25%;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Aktiv-Zustände */
+.garage-door-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.garage-door-overlay.active .garage-door-panel {
+  animation: rollUpDoor 2s cubic-bezier(0.65, 0, 0.15, 1) forwards;
+}
+
+@keyframes rollUpDoor {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+
+/* ==========================================================================
+   COCKPIT-DESIGN (Einstellungen > Darstellung > Design-Stil)
+   Detaillierte 3D-Kippschalter mit Leucht-LED für Navigation & Filter,
+   Halbkreis-Rundinstrumente fürs Dashboard. Der Rest der App (Formulare,
+   Tabellen, Listen) bleibt bewusst unverändert.
+   ========================================================================== */
+
+/* --- Gemeinsame Kippschalter-Optik (Navigation + Fahrzeugart-Filter) --- */
+[data-ui-style="cockpit"] .nav-item,
+[data-ui-style="cockpit"] .category-filter-chip {
+  position: relative;
+  border: 1px solid var(--border-color);
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-body) 55%, var(--bg-card) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-ui-style="cockpit"] .nav-item.active,
+[data-ui-style="cockpit"] .category-filter-chip.active {
+  background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-card) 60%, var(--bg-body) 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-ui-style="cockpit"] .nav-item::after,
+[data-ui-style="cockpit"] .category-filter-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a4a, #101010 75%);
+  box-shadow:
+    inset 0 0 2px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-ui-style="cockpit"] .nav-item.active::after,
+[data-ui-style="cockpit"] .category-filter-chip.active::after {
+  background: radial-gradient(circle at 35% 30%, #fff8dc, var(--accent-primary) 70%);
+  box-shadow:
+    inset 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 2px 1px var(--accent-primary),
+    0 0 5px 1px var(--accent-primary);
+}
+
+[data-ui-style="cockpit"] .nav-item {
+  padding-right: 1.8rem;
+}
+
+[data-ui-style="cockpit"] .nav-item::after {
+  right: 0.75rem;
+}
+
+[data-ui-style="cockpit"] .category-filter-chip {
+  padding-right: 1.7rem;
+  border-radius: 6px;
+}
+
+[data-ui-style="cockpit"] .category-filter-chip::after {
+  right: 0.55rem;
+}
+
+/* --- TÜV/HU-ASSISTENT (geführter Wizard) --- */
+
+/* TÜV-Plakette im Dashboard: klickbar, öffnet den Assistenten */
+.dash-tuev-plakette-clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.dash-tuev-plakette-clickable:hover {
+  transform: scale(1.06);
+}
+
+/* Kleines Stift-Symbol unten rechts an der Plakette - signalisiert auch ohne
+   Hover-Zustand (also v.a. auf dem Handy), dass hier etwas zum Antippen ist */
+#dashTuevPlakette .tuev-plakette-tap-hint {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  /* Glasig statt flächig orange: durchscheinender, geblurrter Grund mit
+     dünnem, hellerem Rand und Innen-Glanzlicht oben - wie ein kleines
+     Glas-Plättchen in der Akzentfarbe, nicht wie ein satter Farbklecks */
+  background: color-mix(in srgb, var(--accent-primary) 32%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 65%, transparent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+#dashTuevPlakette .tuev-plakette-tap-hint svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Kopf mit Schritt-Label und Fortschritts-Punkten */
+.wizard-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.wizard-step-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.wizard-step-dots {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.wizard-step-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--border-highlight);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.wizard-step-dot.active {
+  background-color: var(--accent-primary);
+  transform: scale(1.25);
+}
+
+/* Auswahl-Buttons für AU-/HU-Ergebnisse */
+.wizard-choice-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.wizard-choice-btn {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.wizard-choice-btn:hover {
+  border-color: var(--border-highlight);
+}
+
+.wizard-choice-btn.active {
+  background-color: var(--accent-primary);
+  color: #111827;
+  font-weight: 600;
+  border-color: var(--accent-primary);
+}
+
+.wizard-nav-actions {
+  flex-wrap: wrap;
+}
+
+/* Plaketten-Klebe-Animation (Schritt 4) */
+.tuev-sticker-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0 1rem 0;
+}
+
+.tuev-sticker-plate {
+  position: relative;
+  width: 130px;
+  height: 90px;
+  background: linear-gradient(180deg, #3a4451, #262d37);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-highlight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.tuev-sticker-badge {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.85);
+  background-color: rgba(63, 127, 193, 0.8);
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0;
+  transform: translateY(-70px) scale(0.6) rotate(-18deg);
+}
+
+.tuev-sticker-badge.color-braun { background-color: rgba(138, 90, 46, 0.8); }
+.tuev-sticker-badge.color-rosa { background-color: rgba(226, 143, 174, 0.8); }
+.tuev-sticker-badge.color-gruen { background-color: rgba(79, 158, 74, 0.8); }
+.tuev-sticker-badge.color-orange { background-color: rgba(239, 125, 26, 0.8); }
+.tuev-sticker-badge.color-blau { background-color: rgba(63, 127, 193, 0.8); }
+.tuev-sticker-badge.color-gelb { background-color: rgba(242, 197, 24, 0.8); }
+
+.tuev-sticker-badge.sticker-applied {
+  animation: tuevStickerApply 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes tuevStickerApply {
+  0% {
+    opacity: 0;
+    transform: translateY(-70px) scale(0.6) rotate(-18deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(4px) scale(1.05) rotate(4deg);
+  }
+  80% {
+    transform: translateY(-2px) scale(0.98) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* Zusammenfassung (Schritt 6) */
+.tuev-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tuev-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.7rem;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.tuev-summary-row strong {
+  color: var(--text-muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.tuev-summary-row span {
+  text-align: right;
+  color: var(--text-main);
+}
+
+.tuev-summary-warning {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.8rem;
+  background-color: rgba(231, 76, 60, 0.12);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  border-radius: var(--radius-sm);
+  color: var(--accent-danger);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
