@@ -9,11 +9,11 @@ UI-Sprache und Code-Kommentare: Deutsch.
 
 ```
 index.html            gesamtes Markup (alle Bereiche, Tabs, Modals)
-style.css             gesamtes Styling (Themes, Cockpit-Optik, Mobile-Card-Tabellen ab ~768px)
+style.css             gesamtes Styling (Designs Werkstatt/Showroom, Mobile-Card-Tabellen ab ~768px)
 js/NN-*.js            App-Logik, klassische <script>-Dateien (KEINE ES-Module)
 vendor/chart.umd.min.js  Chart.js 4.5.1, fest versioniert (offline verfügbar)
 sw.js                 Service Worker (App-Shell-Cache, network-first)
-manifest.json, icons/ PWA-Manifest, App-Icons, App-Logo (logo-dark/-light.png)
+manifest.json, icons/ PWA-Manifest, App-Icons (app-icon-*.png – bei Logo-Änderung umbenennen!), App-Logo (logo-dark/-light.png)
 tools/smoke-test.js   Browser-Smoke-Test (Playwright)
 ```
 
@@ -55,8 +55,8 @@ tools/smoke-test.js   Browser-Smoke-Test (Playwright)
 - Datenmodell abwärtskompatibel halten (fehlende Felder tolerieren) – es gibt keine Migrationen,
   und Backups (JSON-Export) älterer Versionen müssen importierbar bleiben.
 - **Bei jeder Änderung an index.html / js / style.css `CACHE_VERSION` in `sw.js` hochzählen.**
-- Genau zwei Designs (`DESIGN_PRESETS` in 01-core): **Werkstatt** (dunkel, Cockpit, Amber, Raster) und
-  **Showroom** (hell, Standard, Petrol, schlicht). Keine freie Farb-/Hintergrundwahl.
+- Genau zwei Designs (`DESIGN_PRESETS` in 01-core): **Werkstatt** (dunkel, ruhig, Amber) und
+  **Showroom** (hell, Petrol). Rolltor-Farben kommen aus `--door-*`. Keine freie Farb-/Hintergrundwahl.
 - Interne Speichernamen (`fleethub_db`, `fleethub_data`, Cache `fleethub-vN`) bewusst nicht umbenennen –
   sonst sind vorhandene Installationen leer.
 

@@ -24,9 +24,15 @@
   --table-header-bg: #0e1218;
   --table-hover-bg: rgba(243, 156, 18, 0.05);
 
-  /* Blueprint- & Werkstatt-Raster */
-  --bg-grid-line: rgba(56, 189, 248, 0.04);
-  --bg-grid-line-major: rgba(56, 189, 248, 0.09);
+  /* Werkstatt: ruhiger Hintergrund mit sanftem Lichtschein */
+  --bg-calm-glow: radial-gradient(1200px 700px at 50% -15%, rgba(148, 163, 184, 0.10), transparent 70%);
+
+  /* Rolltor-Animation */
+  --door-top: #1a212b;
+  --door-bottom: #0d1117;
+  --door-slat: rgba(255, 255, 255, 0.05);
+  --door-slat-shadow: rgba(0, 0, 0, 0.6);
+  --door-shadow: rgba(0, 0, 0, 0.95);
 
   /* Radien & Fonts */
   --radius-sm: 4px;
@@ -55,9 +61,14 @@
   --table-header-bg: #edf1f5;
   --table-hover-bg: rgba(217, 119, 6, 0.06);
 
-  /* Blueprint-Raster für Hell-Modus */
-  --bg-grid-line: rgba(30, 58, 138, 0.04);
-  --bg-grid-line-major: rgba(30, 58, 138, 0.08);
+  --bg-calm-glow: none;
+
+  /* Rolltor-Animation (Showroom) */
+  --door-top: #eef1f5;
+  --door-bottom: #d9dfe7;
+  --door-slat: rgba(255, 255, 255, 0.9);
+  --door-slat-shadow: rgba(15, 23, 42, 0.12);
+  --door-shadow: rgba(15, 23, 42, 0.25);
 
 }
 
@@ -157,21 +168,10 @@ body {
    APP-HINTERGRUND je Design (siehe DESIGN_PRESETS in js/01-core.js)
    ========================================================================== */
 
-/* Werkstatt: Blueprint-/Konstruktionsraster */
-body[data-bg-style="grid"] {
-  background-color: var(--bg-body);
-  background-image:
-    linear-gradient(var(--bg-grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bg-grid-line) 1px, transparent 1px),
-    linear-gradient(var(--bg-grid-line-major) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bg-grid-line-major) 1px, transparent 1px);
-  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
-}
-
-/* Showroom: ruhige, schlichte Fläche */
+/* Ruhige Fläche; im Werkstatt-Design mit sanftem Lichtschein von oben */
 body[data-bg-style="plain"] {
   background-color: var(--bg-body);
-  background-image: none;
+  background-image: var(--bg-calm-glow);
 }
 
 .hidden {
@@ -3167,9 +3167,10 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 .garage-door-panel {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-  border-bottom: 4px solid #f39c12;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95);
+  background: linear-gradient(180deg, var(--door-top) 0%, var(--door-bottom) 100%);
+  border-bottom: 4px solid var(--accent-primary);
+  box-shadow: 0 15px 40px var(--door-shadow);
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -3179,8 +3180,8 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 .garage-door-panel .slat {
   width: 100%;
   height: 25%;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+  border-bottom: 2px solid var(--door-slat);
+  box-shadow: inset 0 -2px 4px var(--door-slat-shadow);
 }
 
 /* Aktiv-Zustände */
@@ -3193,81 +3194,28 @@ input[type="month"]::-webkit-calendar-picker-indicator {
   animation: rollUpDoor 2s cubic-bezier(0.65, 0, 0.15, 1) forwards;
 }
 
+/* Logo + Name mittig auf dem Tor (fährt mit hoch) */
+.garage-door-brand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+}
+.garage-door-brand .app-logo-img { width: 72px; height: 72px; }
+
 @keyframes rollUpDoor {
   0% { transform: translateY(0); }
   100% { transform: translateY(-100%); }
 }
 
-
-/* ==========================================================================
-   COCKPIT-DESIGN (Einstellungen > Darstellung > Design-Stil)
-   Detaillierte 3D-Kippschalter mit Leucht-LED für Navigation & Filter,
-   Halbkreis-Rundinstrumente fürs Dashboard. Der Rest der App (Formulare,
-   Tabellen, Listen) bleibt bewusst unverändert.
-   ========================================================================== */
-
-/* --- Gemeinsame Kippschalter-Optik (Navigation + Fahrzeugart-Filter) --- */
-[data-ui-style="cockpit"] .nav-item,
-[data-ui-style="cockpit"] .category-filter-chip {
-  position: relative;
-  border: 1px solid var(--border-color);
-  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-body) 55%, var(--bg-card) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-[data-ui-style="cockpit"] .nav-item.active,
-[data-ui-style="cockpit"] .category-filter-chip.active {
-  background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-card) 60%, var(--bg-body) 100%);
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-}
-
-[data-ui-style="cockpit"] .nav-item::after,
-[data-ui-style="cockpit"] .category-filter-chip::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #4a4a4a, #101010 75%);
-  box-shadow:
-    inset 0 0 2px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(0, 0, 0, 0.35),
-    0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-
-[data-ui-style="cockpit"] .nav-item.active::after,
-[data-ui-style="cockpit"] .category-filter-chip.active::after {
-  background: radial-gradient(circle at 35% 30%, #fff8dc, var(--accent-primary) 70%);
-  box-shadow:
-    inset 0 0 1px rgba(255, 255, 255, 0.5),
-    0 0 2px 1px var(--accent-primary),
-    0 0 5px 1px var(--accent-primary);
-}
-
-[data-ui-style="cockpit"] .nav-item {
-  padding-right: 1.8rem;
-}
-
-[data-ui-style="cockpit"] .nav-item::after {
-  right: 0.75rem;
-}
-
-[data-ui-style="cockpit"] .category-filter-chip {
-  padding-right: 1.7rem;
-  border-radius: 6px;
-}
-
-[data-ui-style="cockpit"] .category-filter-chip::after {
-  right: 0.55rem;
-}
 
 /* --- TÜV/HU-ASSISTENT (geführter Wizard) --- */
 

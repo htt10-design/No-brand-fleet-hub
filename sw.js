@@ -5,7 +5,7 @@
 // Nur so merkt der Browser, dass es eine neue Version gibt und lädt sie
 // nach - sonst bekommen Nutzer u.U. dauerhaft die alte, zwischengespeicherte
 // Version ausgeliefert.
-const CACHE_VERSION = 'fleethub-v2';
+const CACHE_VERSION = 'fleethub-v3';
 
 // Alle Dateien, die die App offline-fähig machen ("App-Shell")
 const APP_SHELL_FILES = [
@@ -36,9 +36,9 @@ const APP_SHELL_FILES = [
   './js/20-spritmonitor-import.js',
   './icons/logo-dark.png',
   './icons/logo-light.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png'
+  './icons/app-icon-192.png',
+  './icons/app-icon-512.png',
+  './icons/app-icon-maskable-512.png'
 ];
 
 // Lädt eine Datei beim Installieren IMMER wirklich frisch vom Server, statt

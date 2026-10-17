@@ -4,9 +4,9 @@ let appData = {
   activeCustomerVehicleId: null,
   design: "werkstatt",
   theme: "dark",
-  backgroundStyle: "grid",
+  backgroundStyle: "plain",
   accentColor: "amber",
-  uiStyle: "cockpit",
+  uiStyle: "standard",
   customerVehiclesEnabled: true,
   boatCategoryEnabled: true,
   trailerCategoryEnabled: true,
@@ -298,12 +298,12 @@ function getActiveCustomerVehicle() {
 
 /* --- THEME TOGGLE --- */
 /* --- DESIGN: genau zwei fertige Designs statt frei kombinierbarer Optionen ---
-   Werkstatt = dunkel, Cockpit-Instrumente, Amber, Raster-Hintergrund
+   Werkstatt = dunkel, ruhig, Amber
    Showroom  = hell, Standard-Kacheln, Petrol, schlichter Hintergrund
    Die Einzelwerte (theme, uiStyle, accentColor, backgroundStyle) werden aus
    dem Design abgeleitet und mitgespeichert, weil andere Stellen sie lesen. */
 const DESIGN_PRESETS = {
-  werkstatt: { theme: 'dark', uiStyle: 'cockpit', accentColor: 'amber', backgroundStyle: 'grid' },
+  werkstatt: { theme: 'dark', uiStyle: 'standard', accentColor: 'amber', backgroundStyle: 'plain' },
   showroom: { theme: 'light', uiStyle: 'standard', accentColor: 'teal', backgroundStyle: 'plain' }
 };
 
@@ -353,7 +353,7 @@ function applyTheme(theme) {
 
 // Wendet den gewählten App-Hintergrund an (siehe Einstellungen > Darstellung)
 function applyBackgroundStyle(style) {
-  document.body.setAttribute('data-bg-style', style || 'grid');
+  document.body.setAttribute('data-bg-style', style || 'plain');
 }
 
 
